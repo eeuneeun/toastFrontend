@@ -1,19 +1,24 @@
 "use client";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { title } from "process";
 import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-type Props = {
-  id: number;
+type ItemContents = {
+  title: string;
+  contents: string;
 };
 
 export default function Modify() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  console.log(id);
+  const [items, setItems] = useState({
+    id: 0,
+    title: "",
+    contents: "",
+  });
 
-  const [items, setItems] = useState({});
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const getItem = async () => {
     const id = searchParams.get("id");
@@ -33,28 +38,36 @@ export default function Modify() {
     console.log(res);
   };
 
-  async function updateItem(id: number, newContents: {}) {
+  async function updateItem(data: ItemContents) {
+    const id = searchParams.get("id");
     const res = await fetch(`http://localhost:4000/board/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newContents),
+      body: JSON.stringify({
+        name: "eeuneeun", //유저이름
+        title: data.title,
+        contents: data.contents,
+        writeTime: new Date(),
+        like: 0,
+      }),
     });
 
     if (!res.ok) throw new Error("업데이트 실패");
-    return res.json();
+    if (res.status == 200) {
+      router.push("../");
+    }
   }
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<ItemContents>();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setItems({
-      articleId: "1",
-      name: "sample",
-      title: "test",
-      contents: "test",
-      writeTime: "Wed, 21 Oct 2015 18:27:50 GMT",
-      like: 10,
-    });
+  const onSubmit: SubmitHandler<ItemContents> = (data) => {
+    updateItem(data);
   };
 
   useEffect(() => {
@@ -64,13 +77,27 @@ export default function Modify() {
   return (
     <div>
       <h2>수정하기</h2>
-      <div>
-        <div>{items?.title}</div>
-        <div>{items?.contents}</div>
-      </div>
-      <Link href="../../nomal">글목록</Link>
-      <a onClick={() => delItem()}>글삭제</a>
-      <a onClick={() => updateItem(1, {})}>글수정</a>
+      <form action="post" onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <input
+            type="text"
+            id="title"
+            defaultValue={items?.title}
+            {...register("title", { required: true })}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="title"
+            defaultValue={items?.contents}
+            {...register("contents", { required: true })}
+          />
+        </div>
+        <Link href="../../nomal">글목록</Link>
+        <a onClick={() => delItem()}>글삭제</a>
+        <input type="submit" />
+      </form>
     </div>
   );
 }

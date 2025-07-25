@@ -45,7 +45,7 @@ export default function Nomal() {
             <li key={index + item.id}>
               <Link
                 href={{
-                  pathname: `./nomal/modify/${item.id}`,
+                  pathname: `./nomal/view/${item.id}`,
                   query: { id: item.id, ref: "home" },
                 }}
               >
@@ -60,7 +60,7 @@ export default function Nomal() {
             </li>
           ))}
           <li>
-            <Link href={"nomal/write"}>글쓰기</Link>
+            <Link href={"./nomal/write"}>글쓰기</Link>
           </li>
         </ol>
       </div>
