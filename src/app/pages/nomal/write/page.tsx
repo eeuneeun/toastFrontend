@@ -1,34 +1,50 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-type Props = {};
+type ItemContents = {
+  title: string;
+  contents: string;
+};
 
-export default function Write({}: Props) {
+export default function Write({}: ItemContents) {
   // 추가
   useState();
   const [items, setItems] = useState<{}>([]);
 
-  const addItem = async () => {
-    const aa = JSON.stringify(items);
-    console.log(aa);
+  const addItem = async (data: ItemContents) => {
+    console.log(data);
+    setItems({
+      articleId: "1",
+      name: "eeuneeun", //유저이름
+      title: data.title,
+      contents: data.contents,
+      writeTime: "Wed, 21 Oct 2015 18:27:50 GMT",
+      like: 10,
+    });
+
     const res = await fetch("http://localhost:4000/board", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(items),
+      body: JSON.stringify({
+        articleId: "1",
+        name: "eeuneeun", //유저이름
+        title: data.title,
+        contents: data.contents,
+        writeTime: new Date(),
+        like: 10,
+      }),
     });
     console.log(res);
   };
 
   const delItem = async () => {
-    const res = await fetch("http://localhost:4000/board/3", {
+    const res = await fetch(`http://localhost:4000/board/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: 3 }),
     });
     console.log(res);
-    // const newItem = await res.json();
-    // setItems([...items, newItem]);
   };
 
   async function updateItem(id: number, newContents: {}) {
@@ -38,8 +54,8 @@ export default function Write({}: Props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: "오예",
-        contents: "수정",
+        title: "메롱 ",
+        contents: "ㅂ부",
       }),
     });
 
@@ -47,31 +63,35 @@ export default function Write({}: Props) {
     return res.json();
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setItems({
-      articleId: "1",
-      name: "sample",
-      title: "test",
-      contents: "test",
-      writeTime: "Wed, 21 Oct 2015 18:27:50 GMT",
-      like: 10,
-    });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<ItemContents>();
+
+  const onSubmit: SubmitHandler<ItemContents> = (data) => {
+    console.log(data);
+    addItem(data);
   };
 
   return (
     <div>
       Write
-      <form action="post">
+      <form action="post" onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
-          name="title"
           id="title"
-          onChange={(e) => handleChange(e)}
+          {...register("title", { required: true })}
         />
-        <input type="text" name="contents" id="contents" />
+        <input
+          type="text"
+          id="contents"
+          {...register("contents", { required: true })}
+        />
+        <input type="submit" />
       </form>
       <Link href="../nomal">글목록</Link>
-      <a onClick={() => addItem()}>업로드</a>
       <a onClick={() => delItem()}>글삭제</a>
       <a onClick={() => updateItem(1, {})}>글수정</a>
     </div>

@@ -11,7 +11,7 @@ export default function Home() {
           <Link href="/pages/nomal">Nomal Version</Link>
         </li>
         <li>
-          <Link href="/pages/dataGrid">DataGrid Version</Link>
+          <Link href="/pages/dataGridBoard">DataGrid Version</Link>
         </li>
       </ul>
     </div>

@@ -11,7 +11,7 @@ const columns: GridColDef[] = [
   { field: "name", headerName: "Product Name", width: 200 },
   { field: "description", headerName: "Description", width: 300 },
 ];
-export default function DataGrid() {
+export default function DataGridBoard() {
   return (
     <div>
       <DataGrid rows={rows} columns={columns} />

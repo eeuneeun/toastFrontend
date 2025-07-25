@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Nomal() {
   const [list, setList] = useState([
     {
-      articleId: "1",
+      id: "1",
       name: "sample",
       title: "test",
       contents: "test",
@@ -42,14 +42,21 @@ export default function Nomal() {
             </ol>
           </li>
           {list.map((item, index) => (
-            <li key={index + item.articleId}>
-              <ol className="list">
-                <li>{item.articleId}</li>
-                <li>{item.title}</li>
-                <li>{item.name}</li>
-                <li>{item.like}</li>
-                <li>{item.writeTime}</li>
-              </ol>
+            <li key={index + item.id}>
+              <Link
+                href={{
+                  pathname: `./nomal/modify/${item.id}`,
+                  query: { id: item.id, ref: "home" },
+                }}
+              >
+                <ol className="list">
+                  <li>{item.id}</li>
+                  <li>{item.title}</li>
+                  <li>{item.name}</li>
+                  <li>{item.like}</li>
+                  <li>{item.writeTime}</li>
+                </ol>
+              </Link>
             </li>
           ))}
           <li>
