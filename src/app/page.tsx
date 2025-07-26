@@ -14,6 +14,8 @@ export default function Home() {
           <Link href="/pages/dataGridBoard">DataGrid Version</Link>
         </li>
       </ul>
+      <Link href={"/pages/signUp"}>회원가입</Link>
+      <Link href={"/pages/signIn"}>로그인</Link>
     </div>
   );
 }
