@@ -46,32 +46,46 @@ export default function SignUp() {
     <div>
       <h2>회원가입</h2>
       <form action="post" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          id="userId"
-          {...register("userId", { required: true })}
-        />
-        <input
-          type="password"
-          id="password"
-          {...register("password", { required: true })}
-        />
-        <input
-          type="text"
-          id="name"
-          {...register("name", { required: true })}
-        />
-        <input
-          type="text"
-          id="nickname"
-          {...register("nickname", { required: true })}
-        />
-        <input
-          type="email"
-          id="email"
-          {...register("email", { required: true })}
-        />
-
+        <label htmlFor="userID">
+          ID
+          <input
+            type="text"
+            id="userId"
+            {...register("userId", { required: true })}
+          />
+        </label>
+        <label htmlFor="password">
+          PASSWORD
+          <input
+            type="password"
+            id="password"
+            {...register("password", { required: true })}
+          />
+        </label>
+        <label htmlFor="name">
+          NAME
+          <input
+            type="text"
+            id="name"
+            {...register("name", { required: true })}
+          />
+        </label>
+        <label htmlFor="nickname">
+          NICK NAME
+          <input
+            type="text"
+            id="nickname"
+            {...register("nickname", { required: true })}
+          />
+        </label>
+        <label htmlFor="email">
+          E-MAIL
+          <input
+            type="email"
+            id="email"
+            {...register("email", { required: true })}
+          />
+        </label>
         <button>가입</button>
       </form>
     </div>

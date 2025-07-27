@@ -82,13 +82,45 @@ a {
   width: 10%;
 }
 .board .list > li:nth-child(4) {
-  width: 20%;
-}
-.board .list > li:nth-child(5) {
   width: 10%;
 }
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.board .list > li:nth-child(5) {
+  width: 20%;
+}
+
+/* 1. main */
+.main {
+  width: 100%;
+}
+.main a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  font-size: 20px !important;
+  border-radius: 5px;
+  background: #dfd070;
+  padding: 5px 0;
+  margin: 10px;
+}
+
+.auth a {
+  width: 240px;
+  background: #8edf70;
+}
+
+/* write */
+.write {
+  width: 900px;
+}
+.write input,
+.write textarea {
+  width: 100%;
+  max-width: 900px;
+  margin: 0;
+}
+
+.write label {
+  display: block;
+  margin: 10px 0;
 }
