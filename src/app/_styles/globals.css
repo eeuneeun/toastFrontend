@@ -179,6 +179,7 @@ a {
 .toast ol {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .toast ol li {
   width: 150px;
