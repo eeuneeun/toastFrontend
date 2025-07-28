@@ -13,6 +13,9 @@ export default function Home() {
         <li>
           <Link href="/pages/dataGridBoard">DataGrid Version</Link>
         </li>
+        <li>
+          <Link href="/pages/toast">Toast</Link>
+        </li>
         <li className="flex-center auth">
           <Link href={"/pages/signUp"}>회원가입</Link>
           <Link href={"/pages/signIn"}>로그인</Link>

@@ -3,21 +3,28 @@
 import { Pagination } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-export default function Nomal() {
-  const [list, setList] = useState([
+export default function Toast() {
+  const [list, setList] = useState<any[]>([
     {
-      id: "1",
-      name: "sample",
-      title: "test",
-      contents: "test",
-      writeTime: "Wed, 21 Oct 2015 18:27:50 GMT",
-      like: 10,
+      toastName: "기본토스트",
+      price: 3000,
+      description: "맛있는 기본 토스트",
+    },
+    {
+      toastName: "기본토스트",
+      price: 3000,
+      description: "맛있는 기본 토스트",
+    },
+    {
+      toastName: "기본토스트",
+      price: 3000,
+      description: "맛있는 기본 토스트",
     },
   ]);
 
   // 데이터 불러오기
   async function request() {
-    const response = await fetch("http://localhost:4000/board", {
+    const response = await fetch("http://localhost:4000/toast", {
       method: "GET",
     });
     const data = await response.json();
@@ -25,45 +32,34 @@ export default function Nomal() {
   }
 
   useEffect(() => {
-    request();
+    // request();
   }, []);
 
   return (
     <>
-      <div className="board">
+      <div className="toast">
         <ol>
-          <li>
-            <ol className="list">
-              <li>No</li>
-              <li>제목</li>
-              <li>글쓴이</li>
-              <li>추천수</li>
-              <li>글쓴시각</li>
-            </ol>
-          </li>
-          {list.map((item, index) => (
-            <li key={index + item.id}>
-              <Link
-                href={{
-                  pathname: `./nomal/view/${item.id}`,
-                  query: { id: item.id, ref: "home" },
-                }}
-              >
-                <ol className="list">
-                  <li>{item.id}</li>
-                  <li>{item.title}</li>
-                  <li>{item.name}</li>
-                  <li>{item.like}</li>
-                  <li>{item.writeTime}</li>
-                </ol>
-              </Link>
-            </li>
-          ))}
-          <li>
-            <Link href={"./nomal/write"}>글쓰기</Link>
-          </li>
+          {Array.isArray(list) &&
+            list.map((item, index) => (
+              <li key={item.toastName + index}>
+                <Link
+                  href={{
+                    pathname: `./toast/view/${item.id}`,
+                    query: { id: item.id, ref: "home" },
+                  }}
+                >
+                  <img src="http://localhost:3000/file.svg" alt="기본 토스트" />
+                  <dl>
+                    <dt>기본 토스트</dt>
+                    <dd>3,000 원</dd>
+                    <dd> 맛있는 기본 토스트 진짜 맛이 좋습니다</dd>
+                  </dl>
+                </Link>
+              </li>
+            ))}
         </ol>
-        <Pagination count={10} color="secondary" />
+
+        <Link href={"./toast/write"}>글쓰기</Link>
       </div>
     </>
   );

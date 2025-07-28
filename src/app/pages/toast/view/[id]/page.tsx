@@ -4,8 +4,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-type Props = {
+type Toast = {
   id: number;
+  toastName: string;
+  description: string;
+  imgUrl: string;
 };
 
 export default function View() {
@@ -13,21 +16,22 @@ export default function View() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
-  const [article, setArticle] = useState({
+  const [toast, setToast] = useState({
     id: 1,
-    title: "",
-    contents: "`",
+    toastName: "",
+    description: "",
+    imgUrl: "",
   });
 
   const getItem = async () => {
-    const response = await fetch(`http://localhost:4000/board/${id}`, {
+    const response = await fetch(`http://localhost:4000/toast/${id}`, {
       method: "GET",
     });
-    const data = await response.json();
-    setArticle(data);
+    const data: Toast = await response.json();
+    setToast(data);
   };
   const delItem = async () => {
-    const res = await fetch(`http://localhost:4000/board/${id}`, {
+    const res = await fetch(`http://localhost:4000/toast/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
@@ -43,21 +47,21 @@ export default function View() {
   return (
     <div>
       <dl>
-        <dt>{article.title}</dt>
-        <dd>{article.contents}</dd>
+        <dt>{toast?.imgUrl}</dt>
+        <dd>{toast?.toastName}</dd>
+        <dd>{toast?.description}</dd>
       </dl>
 
-      <Link href="../">글목록</Link>
+      <Link href="../">상품 목록</Link>
       <Link
         href={{
-          pathname: `/pages/nomal/modify/${article.id}`,
-          query: { id: article.id, ref: "home" },
+          pathname: `/pages/nomal/modify/${toast.id}`,
+          query: { id: toast.id, ref: "home" },
         }}
       >
-        글수정
+        상품 수정
       </Link>
-      <a onClick={() => delItem()}>글삭제</a>
-      <a onClick={() => delItem()}>글삭제</a>
+      <a onClick={() => delItem()}>상품 삭제</a>
     </div>
   );
 }

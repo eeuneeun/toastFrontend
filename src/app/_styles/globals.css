@@ -49,6 +49,56 @@ a {
   flex-direction: column;
 }
 
+/* header */
+.header {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: #171717;
+  justify-content: center;
+  align-items: center;
+}
+.header a {
+  font-size: 20px;
+  color: #fff;
+}
+.header a.cart {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 15px;
+}
+
+/* nav */
+.nav {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #171717;
+}
+.nav ul {
+  display: flex;
+  width: 100%;
+}
+.nav ul li {
+  display: flex;
+  width: 25%;
+  height: 100%;
+}
+.nav ul a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 100%;
+}
+
 .board {
   max-width: 900px;
   margin: 0 auto;
@@ -123,4 +173,49 @@ a {
 .write label {
   display: block;
   margin: 10px 0;
+}
+
+/* toast */
+.toast ol {
+  display: flex;
+  gap: 10px;
+}
+.toast ol li {
+  width: 150px;
+}
+.toast ol li dt {
+  font-size: 20px;
+  font-weight: 600;
+}
+.toast ol li dd {
+  font-size: 18px;
+}
+
+/* order */
+.order {
+  width: 100%;
+  height: 100%;
+  background: #eee;
+  padding: 20px;
+}
+.order ol li {
+  gap: 15px;
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.order ol li:last-child {
+  margin-bottom: 0;
+}
+.order ol li img {
+  width: 100px;
+  background: #eee;
+  border-radius: 5px;
+}
+.order dl {
+  width: 100%;
+}
+.order dl dt {
+  font-size: 18px;
 }

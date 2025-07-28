@@ -5,21 +5,23 @@ import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type ItemContents = {
-  title: string;
-  contents: string;
+  id: number;
+  toastName: string;
+  description: string;
+  imgUrl: string;
 };
 
 export default function Write({}: ItemContents) {
   const router = useRouter();
 
   const addItem = async (data: ItemContents) => {
-    const res = await fetch("http://localhost:4000/board", {
+    const res = await fetch("http://localhost:4000/toast", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: "eeuneeun", //유저이름
-        title: data.title,
-        contents: data.contents,
+        toastName: data.toastName,
+        description: data.description,
+        imgUrl: data.imgUrl,
         writeTime: new Date(),
         like: 0,
       }),
@@ -43,21 +45,29 @@ export default function Write({}: ItemContents) {
 
   return (
     <div className="write">
-      <h2> Write</h2>
+      <h2>상품 등록</h2>
       <form action="post" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="title">
-          제목
+        <label htmlFor="toastName">
+          상품명
           <input
             type="text"
-            id="title"
-            {...register("title", { required: true })}
+            id="toastName"
+            {...register("toastName", { required: true })}
           />
         </label>
-        <label htmlFor="contents">
-          글 내용
+        <label htmlFor="description">
+          상품 설명
           <textarea
-            id="contents"
-            {...register("contents", { required: true })}
+            id="description"
+            {...register("description", { required: true })}
+          />
+        </label>
+        <label htmlFor="imgUrl">
+          상품 이미지
+          <input
+            type="file"
+            id="imgUrl"
+            {...register("imgUrl", { required: true })}
           />
         </label>
         <input type="submit" />
