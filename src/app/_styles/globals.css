@@ -184,6 +184,9 @@ a {
 .toast ol li {
   width: 150px;
 }
+.toast ol li * {
+  width: 100%;
+}
 .toast ol li dt {
   font-size: 20px;
   font-weight: 600;

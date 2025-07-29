@@ -50,8 +50,9 @@ export default function View() {
         <dt>{toast?.imgUrl}</dt>
         <dd>{toast?.toastName}</dd>
         <dd>{toast?.description}</dd>
+        <dd>{}</dd>
       </dl>
-      <button>주문 담기</button>
+
       <Link href="../">상품 목록</Link>
       <Link
         href={{

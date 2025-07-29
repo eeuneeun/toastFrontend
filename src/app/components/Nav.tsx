@@ -14,7 +14,7 @@ export default function Nav({}: Props) {
           <Link href="/pages/toast">toast</Link>
         </li>
         <li>
-          <Link href="/pages/nomal">board</Link>
+          <Link href="/pages/order">order</Link>
         </li>
         <li>
           <Link href="/pages/mypage">mypage</Link>

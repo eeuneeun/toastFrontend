@@ -6,19 +6,11 @@ import { useEffect, useState } from "react";
 export default function Toast() {
   const [list, setList] = useState<any[]>([
     {
-      toastName: "기본토스트",
-      price: 3000,
-      description: "맛있는 기본 토스트",
-    },
-    {
-      toastName: "기본토스트",
-      price: 3000,
-      description: "맛있는 기본 토스트",
-    },
-    {
-      toastName: "기본토스트",
-      price: 3000,
-      description: "맛있는 기본 토스트",
+      toastName: "",
+      price: 0,
+      desc: "",
+      imgUrl: "",
+      writeTime: "",
     },
   ]);
 
@@ -28,11 +20,12 @@ export default function Toast() {
       method: "GET",
     });
     const data = await response.json();
+    console.log(data);
     setList(data);
   }
 
   useEffect(() => {
-    // request();
+    request();
   }, []);
 
   return (
@@ -48,11 +41,11 @@ export default function Toast() {
                     query: { id: item.id, ref: "home" },
                   }}
                 >
-                  <img src="http://localhost:3000/file.svg" alt="기본 토스트" />
+                  <img src={item.imgUrl} alt={item.toastName} />
                   <dl>
-                    <dt>기본 토스트</dt>
-                    <dd>3,000 원</dd>
-                    <dd> 맛있는 기본 토스트 진짜 맛이 좋습니다</dd>
+                    <dt>{item.toastName}</dt>
+                    <dd>{item.price} 원</dd>
+                    <dd> {item.desc}</dd>
                   </dl>
                 </Link>
               </li>

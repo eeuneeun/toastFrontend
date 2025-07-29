@@ -16,7 +16,7 @@ export default function Order({}: Props) {
             <dl>
               <dt>기본 토스트</dt>
               <dd>
-                <span>1개</span>X<span>3000원</span> =<span>3000원</span>
+                <span>3000원</span>X<span>1개</span> =<span>3000원</span>
               </dd>
               <dd>2025년 7월 30일 10:10</dd>
             </dl>
