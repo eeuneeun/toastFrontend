@@ -210,7 +210,8 @@ input {
 button,
 input[type="submit"] {
   width: 100%;
-  background: #e4d773;
+  background: #60c2ff;
+  color: #fff;
   padding: 10px;
   border-radius: 5px;
 }
@@ -218,13 +219,15 @@ input[type="submit"] {
 .inner {
   width: 100%;
   max-width: 900px;
-  height: 100vh;
+  height: calc(100vh - 130px);
+  position: absolute;
+  top: 50px;
+  overflow: auto;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-  padding: 50px 0 70px 0;
 }
 
 h2 {

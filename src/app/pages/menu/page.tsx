@@ -16,7 +16,7 @@ export default function Toast() {
 
   // 데이터 불러오기
   async function request() {
-    const response = await fetch("http://localhost:4000/toast", {
+    const response = await fetch("http://localhost:4000/menu", {
       method: "GET",
     });
     const data = await response.json();
@@ -34,25 +34,35 @@ export default function Toast() {
         <ol>
           {Array.isArray(list) &&
             list.map((item, index) => (
-              <li key={item.toastName + index}>
+              <li key={item.name + index}>
                 <Link
                   href={{
-                    pathname: `./toast/view/${item.id}`,
+                    pathname: `./menu/view/${item.id}`,
                     query: { id: item.id, ref: "home" },
                   }}
                 >
-                  <img src={item.imgUrl} alt={item.toastName} />
+                  <img src={item.imgUrl} alt={item.name} />
                   <dl>
-                    <dt>{item.toastName}</dt>
+                    <dt>{item.name}</dt>
                     <dd>{item.price} 원</dd>
                     <dd> {item.desc}</dd>
                   </dl>
                 </Link>
+                <ol className="flex-between">
+                  <li className="plus-minus">
+                    <button className="minus">-</button>
+                    <span>1</span>
+                    <button className="plus">+</button>
+                  </li>
+                  <li>
+                    <button>담기</button>
+                  </li>
+                </ol>
               </li>
             ))}
         </ol>
 
-        <Link href={"./toast/write"}>글쓰기</Link>
+        <Link href={"./menu/write"}>글쓰기</Link>
       </div>
     </>
   );

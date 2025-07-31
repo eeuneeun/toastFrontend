@@ -24,14 +24,14 @@ export default function View() {
   });
 
   const getItem = async () => {
-    const response = await fetch(`http://localhost:4000/toast/${id}`, {
+    const response = await fetch(`http://localhost:4000/menu/${id}`, {
       method: "GET",
     });
     const data: Toast = await response.json();
     setToast(data);
   };
   const delItem = async () => {
-    const res = await fetch(`http://localhost:4000/toast/${id}`, {
+    const res = await fetch(`http://localhost:4000/menu/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });

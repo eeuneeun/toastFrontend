@@ -7,11 +7,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 type ItemContents = {
   id: number;
-  toastName: string;
+  category: string;
+  name: string;
   price: number;
   desc: string;
   imgUrl: string;
-  writeTime: Date;
+  create_at: Date;
 };
 
 export default function Write({}: ItemContents) {
@@ -21,19 +22,20 @@ export default function Write({}: ItemContents) {
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
 
   const addItem = async (data: ItemContents) => {
-    const res = await fetch("http://localhost:4000/toast", {
+    const res = await fetch("http://localhost:4000/menu", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        toastName: data.toastName,
+        category: data.category,
+        name: data.name,
         price: data.price,
         desc: data.desc,
         imgUrl: uploadedUrl,
-        writeTime: new Date(),
+        create_at: new Date(),
       }),
     });
     if (res.status == 201) {
-      router.push("../toast");
+      router.push("../menu");
     }
   };
 
@@ -67,7 +69,7 @@ export default function Write({}: ItemContents) {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/toast/upload",
+        "http://localhost:4000/menu/upload",
         formData,
         {
           headers: {
@@ -84,12 +86,20 @@ export default function Write({}: ItemContents) {
     <div className="write">
       <h2>상품 등록</h2>
       <form action="post" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="toastName">
+        <label htmlFor="category">
+          카테고리
+          <input
+            type="text"
+            id="category"
+            {...register("category", { required: true })}
+          />
+        </label>
+        <label htmlFor="name">
           상품명
           <input
             type="text"
-            id="toastName"
-            {...register("toastName", { required: true })}
+            id="name"
+            {...register("name", { required: true })}
           />
         </label>
         <label htmlFor="price">
@@ -119,7 +129,7 @@ export default function Write({}: ItemContents) {
         </label>
         <input type="submit" />
       </form>
-      <Link href="../toast">글목록</Link>
+      <Link href="../menu">글목록</Link>
     </div>
   );
 }

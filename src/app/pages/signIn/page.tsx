@@ -42,16 +42,22 @@ export default function SignIn() {
     <div>
       <h2>로그인</h2>
       <form action="post" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          id="userId"
-          {...register("userId", { required: true })}
-        />
-        <input
-          type="password"
-          id="password"
-          {...register("password", { required: true })}
-        />
+        <label htmlFor="userId">
+          ID
+          <input
+            type="text"
+            id="userId"
+            {...register("userId", { required: true })}
+          />
+        </label>
+        <label htmlFor="password">
+          PASSWORD
+          <input
+            type="password"
+            id="password"
+            {...register("password", { required: true })}
+          />
+        </label>
 
         <button>로그인</button>
       </form>

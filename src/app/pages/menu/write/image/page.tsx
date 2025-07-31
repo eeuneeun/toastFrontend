@@ -25,7 +25,7 @@ export default function UploadForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/toast/upload",
+        "http://localhost:4000/menu/upload",
         formData,
         {
           headers: {
