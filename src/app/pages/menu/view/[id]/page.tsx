@@ -11,6 +11,15 @@ type Toast = {
   desc: string;
   imgUrl: string;
 };
+// type CreateCartDto = {
+//   id: number;
+
+//   customerId: string;
+
+//   createdAt: Date;
+
+//   cartMenus: CartMenu[];
+// }
 
 export default function View() {
   const router = useRouter();
@@ -31,15 +40,24 @@ export default function View() {
     const data: Toast = await response.json();
     setToast(data);
   };
-  const delItem = async () => {
-    const res = await fetch(`http://localhost:4000/menu/${id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    });
-    if (res.status == 200) {
-      router.push("../");
-    }
-  };
+
+  // const addToCart = async (data: ) => {
+  //   const res = await fetch("http://localhost:4000/menu", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       category: data.category,
+  //       name: data.name,
+  //       price: data.price,
+  //       desc: data.desc,
+  //       imgUrl: imgUrl,
+  //       create_at: new Date(),
+  //     }),
+  //   });
+  //   if (res.status == 201) {
+  //     router.push("../menu");
+  //   }
+  // };
 
   useEffect(() => {
     getItem();
