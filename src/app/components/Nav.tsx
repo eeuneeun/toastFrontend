@@ -8,16 +8,19 @@ export default function Nav({}: Props) {
     <div className="nav">
       <ul>
         <li>
-          <Link href="/">home</Link>
+          <Link href="/">메인</Link>
         </li>
         <li>
-          <Link href="/pages/menu">toast</Link>
+          <Link href="/pages/menu">메뉴</Link>
         </li>
         <li>
-          <Link href="/pages/order">order</Link>
+          <Link href="/pages/order">토스트 오더</Link>
         </li>
         <li>
-          <Link href="/pages/mypage">mypage</Link>
+          <Link href="/pages/mypage">마이 페이지</Link>
+        </li>
+        <li>
+          <Link href="/pages/settings">더보기</Link>
         </li>
       </ul>
     </div>

@@ -1,4 +1,5 @@
 "use client";
+import PlusMinus from "@/app/components/PlusMinus";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -6,8 +7,8 @@ import { useForm } from "react-hook-form";
 
 type Toast = {
   id: number;
-  toastName: string;
-  description: string;
+  name: string;
+  desc: string;
   imgUrl: string;
 };
 
@@ -18,8 +19,8 @@ export default function View() {
 
   const [toast, setToast] = useState({
     id: 1,
-    toastName: "",
-    description: "",
+    name: "",
+    desc: "",
     imgUrl: "",
   });
 
@@ -45,23 +46,27 @@ export default function View() {
   }, []);
 
   return (
-    <div>
+    <div className="menu-view">
       <dl>
-        <dt>{toast?.imgUrl}</dt>
-        <dd>{toast?.toastName}</dd>
-        <dd>{toast?.description}</dd>
+        <dt>
+          <img src={toast?.imgUrl} alt={toast?.name} />
+        </dt>
+        <dd>{toast?.name}</dd>
+        <dd>{toast?.desc}</dd>
       </dl>
-      <button>주문 담기</button>
-      <Link href="../">상품 목록</Link>
-      <Link
-        href={{
-          pathname: `/pages/nomal/modify/${toast.id}`,
-          query: { id: toast.id, ref: "home" },
-        }}
-      >
-        상품 수정
-      </Link>
-      <a onClick={() => delItem()}>상품 삭제</a>
+
+      <div>
+        <Link href="/">제품 상세 정보 </Link>
+      </div>
+
+      <div>
+        <PlusMinus price={6000} />
+      </div>
+
+      <div className="flex-between btn-wrap">
+        <button className="now-btn">바로 주문</button>
+        <button className="cart-btn">장바구니 담기</button>
+      </div>
     </div>
   );
 }

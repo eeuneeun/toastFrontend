@@ -31,7 +31,25 @@ export default function Toast() {
   return (
     <>
       <div className="toast">
-        <ol>
+        <ul className="tab">
+          <li>
+            <button className="active">신메뉴</button>
+          </li>
+          <li>
+            <button>추천메뉴</button>
+          </li>
+          <li>
+            <button>토스트</button>
+          </li>
+          <li>
+            <button>커피</button>
+          </li>
+          <li>
+            <button>음료</button>
+          </li>
+        </ul>
+
+        <ol className="menu-wrap">
           {Array.isArray(list) &&
             list.map((item, index) => (
               <li key={item.name + index}>
@@ -41,23 +59,15 @@ export default function Toast() {
                     query: { id: item.id, ref: "home" },
                   }}
                 >
-                  <img src={item.imgUrl} alt={item.name} />
+                  <div className="img-wrap">
+                    <img src={item.imgUrl} alt={item.name} />
+                  </div>
                   <dl>
                     <dt>{item.name}</dt>
                     <dd>{item.price} 원</dd>
                     <dd> {item.desc}</dd>
                   </dl>
                 </Link>
-                <ol className="flex-between">
-                  <li className="plus-minus">
-                    <button className="minus">-</button>
-                    <span>1</span>
-                    <button className="plus">+</button>
-                  </li>
-                  <li>
-                    <button>담기</button>
-                  </li>
-                </ol>
               </li>
             ))}
         </ol>

@@ -8,12 +8,12 @@ export default function Header({}: Props) {
     <>
       <div className="header">
         <Link href="/">EUN TOAST</Link>
-        <Link href="/pages/cart" className="cart">
+        <Link href="/pages/cart" className="cart-btn">
           장바구니
         </Link>
       </div>
 
-      <div className="auth-wrap">
+      <div className="auth-wrap display-none">
         <ul className="auth">
           <li>
             <Link href={"/pages/signUp"}>회원가입</Link>

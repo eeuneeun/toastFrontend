@@ -74,6 +74,7 @@ img,
 fieldset,
 iframe {
   border: 0 none;
+  width: 100%;
 }
 li {
   list-style: none;
@@ -216,6 +217,18 @@ input[type="submit"] {
   border-radius: 5px;
 }
 
+.remove-btn {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #a2a2a2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+  font-size: 17px;
+  flex-grow: 0 !important;
+}
 .inner {
   width: 100%;
   max-width: 900px;
@@ -235,4 +248,47 @@ h2 {
   font-weight: 600;
   margin-bottom: 10px;
   color: #4f4f4f;
+}
+
+/* .tab */
+.tab {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tab > * {
+  flex-grow: 1;
+}
+.tab button {
+  font-size: 18px;
+  background: #fff;
+  color: #2f2f2f;
+  border-radius: 0;
+}
+.tab button.active {
+  font-weight: 600;
+  border-bottom: 2px solid #2f2f2f;
+}
+
+/* .plus-minus */
+.common-cost {
+  font-size: 20px;
+  font-weight: 600;
+}
+.plus-minus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.plus-minus > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+}
+.minus {
+  background: #df7070;
 }

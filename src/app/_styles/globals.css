@@ -65,7 +65,7 @@ a {
   font-size: 20px;
   color: #fff;
 }
-.header a.cart {
+.header a.cart-btn {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -311,7 +311,13 @@ a {
 }
 
 /* toast */
-.toast ol {
+.toast {
+  width: 100%;
+  height: 100%;
+  padding: 15px 0;
+}
+.toast ol.menu-wrap {
+  padding-top: 20px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -325,28 +331,34 @@ a {
 .toast ol li * {
   width: 100%;
 }
+
+.toast ol li .img-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.toast ol li img {
+  height: 100%;
+}
+
 .toast ol li dt {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
 }
 .toast ol li dd {
   font-size: 18px;
+  font-weight: 600;
+  text-align: center;
 }
-.toast .plus-minus {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.toast .plus-minus > * {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 35px;
-  height: 35px;
-  padding: 0;
-}
-.toast .minus {
-  background: #df7070;
+.toast ol li dd:last-child {
+  width: 100%;
+  font-weight: 300;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* order */
@@ -376,4 +388,133 @@ a {
 }
 .order dl dt {
   font-size: 18px;
+}
+
+.order p {
+  padding: 10px 0;
+}
+
+/* .menu-view */
+.menu-view {
+  width: 100%;
+  height: 100%;
+  background: #eee;
+}
+.menu-view dl {
+  width: 100%;
+  background: #fff;
+}
+.menu-view dl dt {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.menu-view dl dt img {
+  width: 100%;
+}
+.menu-view dl dd {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  padding-top: 20px;
+}
+.menu-view dl dd:last-child {
+  font-size: 18px;
+  font-weight: 400;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.menu-view > div {
+  background: #fff;
+  padding: 20px;
+  border-bottom: 1px solid #d0d0d0;
+  margin: 10px 0;
+}
+
+.menu-view .btn-wrap {
+  gap: 20px;
+}
+.menu-view .btn-wrap .now-btn {
+  background: #737373;
+}
+.menu-view .btn-wrap .cart-btn {
+  background: #177099;
+}
+
+/* .cart */
+.cart {
+  width: 100%;
+  background: #eee;
+}
+.cart h2,
+.cart h3 {
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.cart h3 {
+  background: #4a4a4a;
+  color: #fff;
+}
+.cart ol,
+.cart ol li {
+  width: 100%;
+  justify-content: space-between;
+}
+.cart > ol > li {
+  padding: 20px;
+  background: #fff;
+  border-bottom: 1px solid #d0d0d0;
+  margin-bottom: 5px;
+}
+
+.cart > ol > li dl {
+  width: 200px;
+}
+.cart ol li img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.cart ol li dt {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cart p {
+  margin: 20px 0;
+  background: #fff;
+  padding: 20px;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.total-cost {
+  background: #fff;
+  padding: 20px;
+  border-bottom: 1px solid #d0d0d0;
+}
+.total-cost dl {
+  margin-bottom: 30px;
+}
+.total-cost dl dt {
+  font-size: 20px;
+  font-weight: 600;
+}
+.total-cost dl dd {
+  font-size: 21px;
+  font-weight: 600;
+  color: #df4e4e;
 }
