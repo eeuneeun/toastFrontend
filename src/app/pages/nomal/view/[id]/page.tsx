@@ -20,14 +20,17 @@ export default function View() {
   });
 
   const getItem = async () => {
-    const response = await fetch(`http://localhost:4000/board/${id}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/board/${id}`,
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     setArticle(data);
   };
   const delItem = async () => {
-    const res = await fetch(`http://localhost:4000/board/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });

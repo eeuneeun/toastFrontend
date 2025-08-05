@@ -17,7 +17,7 @@ export default function Nomal() {
 
   // 데이터 불러오기
   async function request() {
-    const response = await fetch("http://localhost:4000/board", {
+    const response = await fetch("${process.env.NEXT_PUBLIC_API_URL}/board", {
       method: "GET",
     });
     const data = await response.json();

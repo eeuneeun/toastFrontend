@@ -1,14 +1,24 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import { useCartStore } from "../_store/CartStore";
 
 type Props = {};
 
 export default function Header({}: Props) {
+  const { cart, loading, error, fetchCart } = useCartStore();
+
+  useEffect(() => {
+    console.log(cart);
+  }, []);
   return (
     <>
       <div className="header">
         <Link href="/">EUN TOAST</Link>
-        <Link href="/pages/cart" className="cart-btn">
+        <Link
+          href="/pages/cart"
+          className={`${cart?.cartMenus ? "active" : ""} cart-btn`}
+        >
           장바구니
         </Link>
       </div>

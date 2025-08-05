@@ -2,7 +2,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { MouseEventHandler, ReactEventHandler, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type ItemContents = {
@@ -22,7 +22,7 @@ export default function Write({}: ItemContents) {
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
 
   const addItem = async (data: ItemContents) => {
-    const res = await fetch("http://localhost:4000/menu", {
+    const res = await fetch("${process.env.NEXT_PUBLIC_API_URL}/menu", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -60,7 +60,9 @@ export default function Write({}: ItemContents) {
     }
   };
 
-  const handleUpload = async (event: Event) => {
+  const handleUpload = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
     if (!selectedFile) return;
 
@@ -69,7 +71,7 @@ export default function Write({}: ItemContents) {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/menu/upload",
+        "${process.env.NEXT_PUBLIC_API_URL}/menu/upload",
         formData,
         {
           headers: {
@@ -77,7 +79,7 @@ export default function Write({}: ItemContents) {
           },
         }
       );
-      setUploadedUrl(`http://localhost:4000${response.data.url}`);
+      setUploadedUrl(`${process.env.NEXT_PUBLIC_API_URL}${response.data.url}`);
     } catch (error) {
       console.error("Upload failed:", error);
     }
@@ -125,7 +127,13 @@ export default function Write({}: ItemContents) {
           {previewUrl && (
             <img src={previewUrl} alt="preview" style={{ width: 150 }} />
           )}
-          <button onClick={(event) => handleUpload(event)}>Upload</button>
+          <button
+            onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+              handleUpload(event)
+            }
+          >
+            Upload
+          </button>
         </label>
         <input type="submit" />
       </form>

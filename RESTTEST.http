@@ -1,4 +1,4 @@
-POST http://localhost:4000/board
+POST ${process.env.NEXT_PUBLIC_API_URL}/board
 content-type: application/json
 
 {
@@ -11,5 +11,5 @@ content-type: application/json
 }
 
 ###글 한개
-GET http://localhost:4000/board/5
+GET ${process.env.NEXT_PUBLIC_API_URL}/board/5
 content-type: application/json

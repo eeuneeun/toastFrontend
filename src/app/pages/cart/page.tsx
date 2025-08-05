@@ -1,5 +1,6 @@
 "use client";
 
+import { useCartStore } from "@/app/_store/CartStore";
 import PlusMinus from "@/app/components/PlusMinus";
 import React, { useState } from "react";
 
@@ -8,18 +9,20 @@ type Props = {};
 export default function Cart({}: Props) {
   const [list, setList] = useState([1, 2, 3, 4, 5]);
   const storeName = "신림 프라임 법학원점";
+  const { cart, loading, error, fetchCart } = useCartStore();
+
   return (
     <div className="cart">
       <h2>장바구니</h2>
       <h3>{storeName}</h3>
       <ol>
-        {list.map((item, idx) => (
-          <li className="flex-center" key={item + idx}>
-            <img src="/globe.svg" alt="기본 토스트" />
+        {cart?.cartMenus.map((item, idx) => (
+          <li className="flex-center" key={item.menu.name + idx}>
+            <img src={item.menu.imgUrl} alt="기본 토스트" />
             <dl>
-              <dt>기본 토스트</dt>
+              <dt>{item.menu.name}</dt>
               <dd>
-                <PlusMinus price={5000} />
+                <PlusMinus price={item.menu.price} />
               </dd>
             </dl>
             <button className="remove-btn">x</button>

@@ -22,7 +22,7 @@ export default function Modify() {
 
   const getItem = async () => {
     const id = searchParams.get("id");
-    const res = await fetch(`http://localhost:4000/board/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`, {
       method: "GET",
     });
     const data = await res.json();
@@ -31,7 +31,7 @@ export default function Modify() {
   };
 
   const delItem = async () => {
-    const res = await fetch(`http://localhost:4000/board/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
@@ -40,7 +40,7 @@ export default function Modify() {
 
   async function updateItem(data: ItemContents) {
     const id = searchParams.get("id");
-    const res = await fetch(`http://localhost:4000/board/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

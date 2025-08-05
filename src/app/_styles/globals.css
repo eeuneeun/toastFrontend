@@ -72,6 +72,17 @@ a {
   font-size: 15px;
 }
 
+.header a.cart-btn.active::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: #df4e4e;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: -5px;
+}
 /* nav */
 .nav {
   display: flex;
@@ -451,6 +462,7 @@ a {
 /* .cart */
 .cart {
   width: 100%;
+  height: 100%;
   background: #eee;
 }
 .cart h2,

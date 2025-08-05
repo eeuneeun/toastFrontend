@@ -24,14 +24,17 @@ export default function View() {
   });
 
   const getItem = async () => {
-    const response = await fetch(`http://localhost:4000/menu/${id}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/menu/${id}`,
+      {
+        method: "GET",
+      }
+    );
     const data: Toast = await response.json();
     setToast(data);
   };
   const delItem = async () => {
-    const res = await fetch(`http://localhost:4000/menu/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });

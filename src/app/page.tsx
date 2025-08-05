@@ -20,7 +20,7 @@ export default function Home() {
   ]);
   // 데이터 불러오기
   async function request() {
-    const response = await fetch("http://localhost:4000/menu", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
       method: "GET",
     });
     const data = await response.json();

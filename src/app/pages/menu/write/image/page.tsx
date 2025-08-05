@@ -25,7 +25,7 @@ export default function UploadForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/menu/upload",
+        "${process.env.NEXT_PUBLIC_API_URL}/menu/upload",
         formData,
         {
           headers: {
@@ -33,7 +33,7 @@ export default function UploadForm() {
           },
         }
       );
-      setUploadedUrl(`http://localhost:4000${response.data.url}`);
+      setUploadedUrl(`${process.env.NEXT_PUBLIC_API_URL}${response.data.url}`);
     } catch (error) {
       console.error("Upload failed:", error);
     }

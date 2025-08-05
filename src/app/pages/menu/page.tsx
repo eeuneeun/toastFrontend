@@ -16,7 +16,7 @@ export default function Toast() {
 
   // 데이터 불러오기
   async function request() {
-    const response = await fetch("http://localhost:4000/menu", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
       method: "GET",
     });
     const data = await response.json();
@@ -60,7 +60,10 @@ export default function Toast() {
                   }}
                 >
                   <div className="img-wrap">
-                    <img src={item.imgUrl} alt={item.name} />
+                    <img
+                      src={item.imgUrl ? item.imgUrl : "/banner01.png"}
+                      alt={item.name}
+                    />
                   </div>
                   <dl>
                     <dt>{item.name}</dt>
