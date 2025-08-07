@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
 
 type Props = {};
@@ -24,13 +25,15 @@ export default function Order({}: Props) {
 
       <ol>
         {list.map((item, idx) => (
-          <li className="flex-center" key={item + idx}>
-            <img src="/store01.png" alt="신림 프리임 법학원점" />
-            <dl>
-              <dt>신림 프리임 법학원점</dt>
-              <dd>서울특별시 관악구 신림동 131-21</dd>
-              <dd>163m</dd>
-            </dl>
+          <li key={item + idx}>
+            <Link href="/pages/menu" className="flex-center">
+              <img src="/store01.png" alt="신림 프리임 법학원점" />
+              <dl>
+                <dt>신림 프리임 법학원점</dt>
+                <dd>서울특별시 관악구 신림동 131-21</dd>
+                <dd>163m</dd>
+              </dl>
+            </Link>
           </li>
         ))}
       </ol>

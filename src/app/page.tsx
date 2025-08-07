@@ -7,8 +7,10 @@ import KebabDiningIcon from "@mui/icons-material/KebabDining";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import { setMaxListeners } from "events";
 import { useEffect, useState } from "react";
+import { useUserStore } from "./_store/UserStore";
 
 export default function Home() {
+  const { name } = useUserStore();
   const [recomlist, recomSetList] = useState<any[]>([
     {
       name: "토스트",
@@ -33,6 +35,7 @@ export default function Home() {
   }, []);
   return (
     <div className="main flex-center">
+      {name && <div className="greeting">{name}님 안녕하세요</div>}
       <div className="banner promotion">
         <img src="/banner01.jpg" alt="배너" />
       </div>

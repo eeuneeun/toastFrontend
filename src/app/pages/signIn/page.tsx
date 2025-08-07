@@ -1,31 +1,23 @@
 "use client";
 
+import { useUserStore } from "@/app/_store/UserStore";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type User = {
   userId: string;
   password: string;
-  name: string;
-  email: string;
-  nickname: string;
 };
 export default function SignIn() {
   const router = useRouter();
+  const { signIn } = useUserStore();
 
-  const addItem = async (data: User) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: data.userId,
-        password: data.password,
-      }),
-    });
-    if (res.status == 201) {
-      router.push("/pages/nomal");
+  async function login(data: User) {
+    const res = await signIn(data.userId, data.password);
+    if (res === true) {
+      router.push("/");
     }
-  };
+  }
 
   const {
     register,
@@ -36,7 +28,7 @@ export default function SignIn() {
 
   const onSubmit: SubmitHandler<User> = (data) => {
     console.log(data);
-    addItem(data);
+    login(data);
   };
   return (
     <div>

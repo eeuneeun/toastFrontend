@@ -1,15 +1,40 @@
 "use client";
 
 import { useCartStore } from "@/app/_store/CartStore";
+import { useOrderStore } from "@/app/_store/OrderStore";
+import { useUserStore } from "@/app/_store/UserStore";
 import PlusMinus from "@/app/components/PlusMinus";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 type Props = {};
+type reqCartData = {
+  menuId: number;
+  quantity: number;
+};
 
 export default function Cart({}: Props) {
-  const [list, setList] = useState([1, 2, 3, 4, 5]);
   const storeName = "신림 프라임 법학원점";
+  const router = useRouter();
+  const [list, setList] = useState([1, 2, 3, 4, 5]);
+  const { id, name } = useUserStore();
   const { cart, loading, error, fetchCart } = useCartStore();
+  const { storeId, createOrder } = useOrderStore();
+
+  async function order() {
+    let data: reqCartData[] = [];
+    await cart?.cartMenus.map((item, idx) => {
+      data.push({
+        menuId: item.menu.id,
+        quantity: item.quantity,
+      });
+    });
+
+    const result = await createOrder(id, "2", data);
+    result ? router.push("/") : alert("주문 중 오류가 발생했습니다!");
+  }
+
+  useEffect(() => {}, []);
 
   return (
     <div className="cart">
@@ -37,7 +62,7 @@ export default function Cart({}: Props) {
           <dt>상품금액</dt>
           <dd>18,000 원</dd>
         </dl>
-        <button>주문하기</button>
+        <button onClick={order}>주문하기</button>
       </div>
     </div>
   );
