@@ -6,6 +6,7 @@ import { useUserStore } from "../_store/UserStore";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LoginIcon from "@mui/icons-material/Login";
+
 type Props = {};
 
 export default function Header({}: Props) {
@@ -17,7 +18,9 @@ export default function Header({}: Props) {
   return (
     <>
       <div className="header">
-        <Link href="/">EUN TOAST</Link>
+        <Link href="/" className="logo">
+          <img src="/logo.png" alt="토스트롱" />
+        </Link>
 
         {id ? (
           <div>
@@ -32,18 +35,12 @@ export default function Header({}: Props) {
             </Link>
           </div>
         ) : (
-          <div className="auth-wrap">
-            <ul className="auth">
-              <li>
-                <Link href={"/pages/signUp"}>회원가입</Link>
-              </li>
-              <li>
-                <Link href={"/pages/signIn"}>
-                  <LoginIcon />
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <>
+            <Link href={"/pages/signUp"} className="signup-btn"></Link>
+            <Link href={"/pages/signIn"} className="signout-btn">
+              <LoginIcon />
+            </Link>
+          </>
         )}
       </div>
     </>

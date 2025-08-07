@@ -18,7 +18,7 @@ export default function Cart({}: Props) {
   const router = useRouter();
   const [list, setList] = useState([1, 2, 3, 4, 5]);
   const { id, name } = useUserStore();
-  const { cart, loading, error, fetchCart } = useCartStore();
+  const { cart, loading, error, clearCart } = useCartStore();
   const { storeId, createOrder } = useOrderStore();
 
   async function order() {
@@ -31,10 +31,17 @@ export default function Cart({}: Props) {
     });
 
     const result = await createOrder(id, "2", data);
-    result ? router.push("/") : alert("주문 중 오류가 발생했습니다!");
+    if (result) {
+      clearCart(cart ? cart.id : 1);
+      router.push("/");
+    } else {
+      alert("주문 중 오류가 발생했습니다!");
+    }
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log("cart,", cart);
+  }, []);
 
   return (
     <div className="cart">
@@ -47,7 +54,7 @@ export default function Cart({}: Props) {
             <dl>
               <dt>{item.menu.name}</dt>
               <dd>
-                <PlusMinus price={item.menu.price} />
+                <PlusMinus price={item.menu.price} quantity={item.quantity} />
               </dd>
             </dl>
             <button className="remove-btn">x</button>

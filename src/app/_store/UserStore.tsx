@@ -8,6 +8,7 @@ interface UserStore {
   accessToken: string | null;
   error: string | null;
   signIn: (userId: string, password: string) => Promise<boolean>;
+  signOut: (userId: string, accToken: string) => Promise<boolean>;
   fetchAccToken: (accessToken: string) => Promise<void>;
 }
 
@@ -16,7 +17,7 @@ export const useUserStore = create<UserStore>()(
     (set) => ({
       id: "",
       name: "",
-      accessToken: "",
+      accessToken: null,
       error: null,
       // 로그인 처리
       signIn: async (userId, password) => {
@@ -37,7 +38,7 @@ export const useUserStore = create<UserStore>()(
           set({
             id: data.user.id,
             name: data.user.username,
-            accessToken: data?.accToken,
+            accessToken: "QWEQ1KJWEJLQKWEw",
           });
 
           return true;
@@ -45,6 +46,33 @@ export const useUserStore = create<UserStore>()(
           console.log(err);
           return false;
         }
+      },
+      signOut: async (userId, accToken) => {
+        //try {
+        // const res = await fetch(
+        //   `${process.env.NEXT_PUBLIC_API_URL}/user/logout`,
+        //   {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({
+        //       userId: userId,
+        //       password: password,
+        //     }),
+        //   }
+        // );
+        // const data = await res.json();
+        // console.log("data", data);
+        set({
+          id: "",
+          name: "",
+          accessToken: "",
+        });
+
+        return true;
+        // } catch (err: any) {
+        //   console.log(err);
+        //   return false;
+        // }
       },
       // accToken 갱신
       fetchAccToken: async (newAccToken) => {

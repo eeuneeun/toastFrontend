@@ -1,6 +1,19 @@
+"use client";
+
+import { useUserStore } from "@/app/_store/UserStore";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function MyPage() {
+  const router = useRouter();
+  const { id, accessToken, signOut } = useUserStore();
+
+  async function logout() {
+    const result = await (accessToken && signOut(id, accessToken));
+    if (result) {
+      router.push("/");
+    }
+  }
   return (
     <div className="mypage">
       <h2>마이 페이지</h2>
@@ -21,6 +34,9 @@ export default function MyPage() {
           </li>
           <li>
             <Link href="/pages/mypage/order">주문내역</Link>
+          </li>
+          <li>
+            <button onClick={logout}>로그아웃</button>
           </li>
         </ul>
       </div>

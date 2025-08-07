@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-type Props = { price: number };
+type Props = { price: number; quantity: number };
 
-export default function PlusMinus({ price: number }: Props) {
+export default function PlusMinus({ price, quantity }: Props) {
   const originCost = 7500;
-  const [cost, setCost] = useState(7500);
+  const [cost, setCost] = useState(price);
 
   function plus() {
     setCost(cost + originCost);
@@ -19,7 +19,7 @@ export default function PlusMinus({ price: number }: Props) {
         <button className="minus" onClick={minus}>
           -
         </button>
-        <span>1</span>
+        <span>{quantity ? quantity : 1}</span>
         <button className="plus" onClick={plus}>
           +
         </button>

@@ -30,6 +30,8 @@ export default function View() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const paramId = searchParams.get("id");
+
+  //@ts-ignore
   const nowMenuId = parseInt(paramId, 10);
 
   const { cart, loading, error, fetchCart } = useCartStore();

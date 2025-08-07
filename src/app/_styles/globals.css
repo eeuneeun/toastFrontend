@@ -66,12 +66,18 @@ a {
   color: #fff;
 }
 
+.header .logo {
+  width: 70px;
+  padding-top: 5px;
+}
+
 .header a.mypage-btn {
   position: absolute;
   right: 45px;
   top: 15px;
 }
-.header a.cart-btn {
+.header a.cart-btn,
+.header a.signout-btn {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -570,4 +576,27 @@ a {
   font-size: 21px;
   font-weight: 600;
   color: #df4e4e;
+}
+
+/* receipt : 주문내역 */
+.receipt {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background: #eee;
+}
+
+.receipt .order-list li {
+  padding: 15px;
+  border-bottom: 2px solid #c2c2c2;
+  background: #fff;
+  margin-bottom: 15px;
+}
+.receipt .order-list li a {
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.receipt .order-list img {
+  width: 150px;
 }
