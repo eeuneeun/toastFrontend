@@ -54,7 +54,19 @@ export default function Cart({}: Props) {
             <dl>
               <dt>{item.menu.name}</dt>
               <dd>
-                <PlusMinus price={item.menu.price} quantity={item.quantity} />
+                <ol className="flex-between">
+                  <li className="common-cost">{item.menu.price}</li>
+                  <li className="plus-minus">
+                    <button className="minus" onClick={() => {}}>
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button className="plus" onClick={() => {}}>
+                      +
+                    </button>
+                  </li>
+                  <li>{item.menu.price * item.quantity}</li>
+                </ol>
               </dd>
             </dl>
             <button className="remove-btn">x</button>

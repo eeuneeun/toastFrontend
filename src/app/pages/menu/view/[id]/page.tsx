@@ -6,6 +6,7 @@ import { userAgent } from "next/server";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useCartStore } from "@/app/_store/CartStore";
+import { useMenuStore } from "@/app/_store/MenuStore";
 type Toast = {
   id: number;
   name: string;
@@ -28,6 +29,7 @@ type CartMenu = {
 
 export default function View() {
   const router = useRouter();
+  const { nowMenu, setNowMenu } = useMenuStore();
   const searchParams = useSearchParams();
   const paramId = searchParams.get("id");
 
@@ -57,13 +59,16 @@ export default function View() {
 
   const getItem = async () => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/menu/${paramId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/menu/${nowMenuId}`,
       {
         method: "GET",
       }
     );
     const data: Toast = await response.json();
-    setToast(data);
+    setNowMenu({
+      ...data,
+      quantity: 1,
+    });
   };
 
   async function addToCart(
@@ -90,7 +95,7 @@ export default function View() {
 
   useEffect(() => {
     getItem();
-  }, [paramId]);
+  }, [nowMenuId]);
 
   useEffect(() => {
     fetchCart("sacroo");
@@ -102,12 +107,12 @@ export default function View() {
       <dl>
         <dt>
           <img
-            src={toast.imgUrl ? toast.imgUrl : "/banner01.png"}
-            alt={toast.name ? toast.name : "토스트"}
+            src={nowMenu?.imgUrl ? nowMenu?.imgUrl : "/banner01.png"}
+            alt={nowMenu?.name ? nowMenu?.name : "토스트"}
           />
         </dt>
-        <dd>{toast?.name}</dd>
-        <dd>{toast?.desc}</dd>
+        <dd>{nowMenu?.name}</dd>
+        <dd>{nowMenu?.desc}</dd>
       </dl>
 
       <div>
@@ -115,7 +120,10 @@ export default function View() {
       </div>
 
       <div>
-        <PlusMinus price={6000} />
+        <PlusMinus
+          price={nowMenu?.price ? nowMenu?.price : 2000}
+          quantity={nowMenu?.quantity ? nowMenu?.quantity : 1}
+        />
       </div>
 
       <div className="flex-between btn-wrap">

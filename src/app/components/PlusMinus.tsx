@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useMenuStore } from "../_store/MenuStore";
 
 type Props = { price: number; quantity: number };
 
 export default function PlusMinus({ price, quantity }: Props) {
-  const originCost = 7500;
-  const [cost, setCost] = useState(price);
+  const { nowMenu, setNowMenu } = useMenuStore();
+  const [totalCost, setTotalCost] = useState(0);
 
   function plus() {
-    setCost(cost + originCost);
+    let tmpData = nowMenu;
+
+    //@ts-ignore
+    setNowMenu({
+      ...tmpData,
+      quantity: tmpData?.quantity + 1,
+    });
   }
+
   function minus() {
-    setCost(cost - originCost);
+    let tmpData = nowMenu;
+
+    setNowMenu({
+      ...tmpData,
+      quantity: tmpData?.quantity - 1,
+    });
   }
+
+  useEffect(() => {
+    setTotalCost(nowMenu.price * nowMenu.quantity);
+  }, [nowMenu.quantity]);
   return (
     <ol className="flex-between">
-      <li className="common-cost">{cost}</li>
+      <li className="common-cost">{nowMenu.price}</li>
       <li className="plus-minus">
         <button className="minus" onClick={minus}>
           -
@@ -24,6 +43,7 @@ export default function PlusMinus({ price, quantity }: Props) {
           +
         </button>
       </li>
+      <li>{totalCost}</li>
     </ol>
   );
 }
