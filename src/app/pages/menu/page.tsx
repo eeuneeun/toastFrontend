@@ -4,6 +4,7 @@ import { Pagination } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function Toast() {
+  const [tab, setTab] = useState("new");
   const [list, setList] = useState<any[]>([
     {
       toastName: "",
@@ -15,7 +16,7 @@ export default function Toast() {
   ]);
 
   // 데이터 불러오기
-  async function request() {
+  async function getMenuAll() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
       method: "GET",
     });
@@ -24,8 +25,20 @@ export default function Toast() {
     setList(data);
   }
 
+  async function getMenuByCategory(category: string) {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/menu/category/${category}`,
+      {
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    setList(data);
+  }
+
   useEffect(() => {
-    request();
+    getMenuAll();
   }, []);
 
   return (
@@ -33,19 +46,59 @@ export default function Toast() {
       <div className="toast">
         <ul className="tab">
           <li>
-            <button className="active">신메뉴</button>
+            <button
+              className={`${tab === "new" ? "active" : ""}`}
+              onClick={() => {
+                getMenuByCategory("new");
+                setTab("new");
+              }}
+            >
+              신메뉴
+            </button>
           </li>
           <li>
-            <button>추천메뉴</button>
+            <button
+              className={`${tab === "recommand" ? "active" : ""}`}
+              onClick={() => {
+                getMenuByCategory("recommand");
+                setTab("recommand");
+              }}
+            >
+              추천메뉴
+            </button>
           </li>
           <li>
-            <button>토스트</button>
+            <button
+              className={`${tab === "toast" ? "active" : ""}`}
+              onClick={() => {
+                getMenuByCategory("toast");
+                setTab("toast");
+              }}
+            >
+              토스트
+            </button>
           </li>
           <li>
-            <button>커피</button>
+            <button
+              className={`${tab === "coffee" ? "active" : ""}`}
+              onClick={() => {
+                getMenuByCategory("coffee");
+                setTab("coffee");
+              }}
+            >
+              커피
+            </button>
           </li>
           <li>
-            <button>음료</button>
+            <button
+              className={`${tab === "bevarage" ? "active" : ""}`}
+              onClick={() => {
+                getMenuByCategory("bevarage");
+                setTab("bevarage");
+              }}
+            >
+              음료
+            </button>
           </li>
         </ul>
 

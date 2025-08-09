@@ -37,7 +37,16 @@ export const useMenuStore = create<MenuState>()(
         return true;
       },
       clearNowMenu: () => {
-        set({ nowMenu: null });
+        set({
+          nowMenu: {
+            id: 1,
+            name: "토스트",
+            desc: "맛있음",
+            price: 2000,
+            quantity: 1,
+            imgUrl: "/banner01.png",
+          },
+        });
       },
     }),
     {

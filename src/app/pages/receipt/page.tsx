@@ -10,17 +10,6 @@ export default function Receipt({}: Props) {
   return (
     <div className="receipt">
       <h2>주문 내역</h2>
-      <ul className="tab">
-        <li>
-          <button className="active">리스트로 선택</button>
-        </li>
-        <li>
-          <button>지도로 선택</button>
-        </li>
-        <li>
-          <button>즐겨찾기</button>
-        </li>
-      </ul>
 
       <ol className="order-list">
         {list.map((item, idx) => (
