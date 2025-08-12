@@ -5,6 +5,7 @@ interface OrderStore {
   storeId: string | null;
   loading: boolean;
   error: string | null;
+  setStoreId: (storeId: string) => void;
   createOrder: (
     userId: string,
     storeId: string,
@@ -18,6 +19,9 @@ export const useOrderStore = create<OrderStore>((set) => ({
   loading: false,
   error: null,
 
+  setStoreId: (storeId: string) => {
+    set({ storeId: storeId });
+  },
   // 주문 생성
   createOrder: async (userId, storeId, items) => {
     set({ loading: true, error: null });

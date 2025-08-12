@@ -30,7 +30,9 @@ export default function Cart({}: Props) {
       });
     });
 
-    const result = await createOrder(id, "2", data);
+    console.log(storeId);
+    //@ts-ignore
+    const result = await createOrder(id, storeId, data);
     if (result) {
       clearCart(cart ? cart.id : 1);
       router.push("/");
