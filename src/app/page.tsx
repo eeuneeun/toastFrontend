@@ -64,19 +64,19 @@ export default function Home() {
             </Link>
           </li>
           <li>
-            <Link href="/pages/beverage">
+            <Link href="/pages/menu">
               <EmojiFoodBeverageIcon />
               <span>Beverage</span>
             </Link>
           </li>
           <li>
-            <Link href="/pages/side">
+            <Link href="/pages/menu">
               <KebabDiningIcon />
               <span>Side</span>
             </Link>
           </li>
           <li>
-            <Link href="/pages/side">
+            <Link href="/pages/menu">
               <FastfoodIcon />
               <span> Set</span>
             </Link>

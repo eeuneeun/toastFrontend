@@ -1,12 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {};
 
 export default function Order({}: Props) {
-  const [list, setList] = useState([1, 2, 3, 4, 5]);
+  const [list, setList] = useState([]);
+
+  // 인근의 스토어 불러오기
+  async function getStoreAll() {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store`, {
+      method: "GET",
+    });
+    const data = await response.json();
+    console.log(data);
+    setList(data);
+  }
+
+  useEffect(() => {
+    getStoreAll();
+  }, []);
+
   return (
     <div className="order">
       <h2>매장선택</h2>
