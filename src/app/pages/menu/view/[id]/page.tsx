@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useCartStore } from "@/app/_store/CartStore";
 import { useMenuStore } from "@/app/_store/MenuStore";
+import { useUserStore } from "@/app/_store/UserStore";
 type Toast = {
   id: number;
   name: string;
@@ -36,6 +37,7 @@ export default function View() {
   //@ts-ignore
   const nowMenuId = parseInt(paramId, 10);
 
+  const { id } = useUserStore();
   const { cart, loading, error, fetchCart } = useCartStore();
 
   const getItem = async () => {
@@ -69,6 +71,8 @@ export default function View() {
 
     const data = await res.json();
     console.log(data);
+
+    fetchCart(customerId);
     if (res.status == 201) {
       router.push("../../menu");
     }
@@ -79,7 +83,6 @@ export default function View() {
   }, [nowMenuId]);
 
   useEffect(() => {
-    fetchCart("sacroo");
     console.log(cart);
   }, [fetchCart]);
 
@@ -111,7 +114,7 @@ export default function View() {
         <button className="now-btn">바로 주문</button>
         <button
           className="cart-btn"
-          onClick={() => addToCart("sacroo", nowMenuId, 1)}
+          onClick={() => addToCart(id, nowMenuId, 1)}
         >
           장바구니 담기
         </button>

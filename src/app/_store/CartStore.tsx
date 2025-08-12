@@ -147,6 +147,7 @@ export const useCartStore = create<CartState>()(
           set({ error: err.message ?? String(err), loading: false });
         }
       },
+
       // 장바구니 비우기
       clearCart: async (cartId) => {
         set({ loading: true, error: null });

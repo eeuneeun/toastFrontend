@@ -46,7 +46,7 @@ export default function Order({}: Props) {
             <Link
               href="/pages/menu"
               className="flex-center"
-              onClick={() => setStoreInfo(item.storeId, item.storeName)}
+              onClick={() => setStoreInfo(item?.storeId, item?.storeName)}
             >
               <img src="/store01.png" alt={item.storeName} />
               <dl>
