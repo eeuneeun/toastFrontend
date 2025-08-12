@@ -41,22 +41,26 @@ export default function Order({}: Props) {
       </ul>
 
       <ol>
-        {list.map((item, idx) => (
-          <li key={item + idx}>
-            <Link
-              href="/pages/menu"
-              className="flex-center"
-              onClick={() => setStoreInfo(item?.storeId, item?.storeName)}
-            >
-              <img src="/store01.png" alt={item.storeName} />
-              <dl>
-                <dt>{item.storeName}</dt>
-                <dd>{item.address}</dd>
-                <dd>163m</dd>
-              </dl>
-            </Link>
-          </li>
-        ))}
+        {Array.isArray(list) ? (
+          list.map((item, idx) => (
+            <li key={item + idx}>
+              <Link
+                href="/pages/menu"
+                className="flex-center"
+                onClick={() => setStoreInfo(item?.storeId, item?.storeName)}
+              >
+                <img src="/store01.png" alt={item.storeName} />
+                <dl>
+                  <dt>{item.storeName}</dt>
+                  <dd>{item.address}</dd>
+                  <dd>163m</dd>
+                </dl>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <li>근처에 매장이 없습니다.</li>
+        )}
       </ol>
     </div>
   );

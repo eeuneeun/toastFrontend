@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 type Props = {};
 
 export default function Receipt({}: Props) {
-  const [list, setList] = useState([1, 2, 3, 4, 5]);
+  const [list, setList] = useState([]);
   const { id } = useUserStore();
 
   // 인근의 스토어 불러오기
@@ -25,23 +25,27 @@ export default function Receipt({}: Props) {
 
   useEffect(() => {
     getReceiptAll();
-  }, []);
+  }, [id]);
   return (
     <div className="receipt">
       <h2>주문 내역</h2>
 
       <ol className="order-list">
-        {list.map((item, idx) => (
-          <li key={item + idx}>
-            <Link href="/pages/receipt/detail" className="flex-center">
-              <img src="/banner01.png" alt="토스트" />
-              <dl>
-                <dt>{item?.orderMenus[0]?.menu?.name} 외 1건</dt>
-                <dd>총 가격 18000원</dd>
-              </dl>
-            </Link>
-          </li>
-        ))}
+        {Array.isArray(list) ? (
+          list.map((item, idx) => (
+            <li key={item + idx}>
+              <Link href="/pages/receipt/detail" className="flex-center">
+                <img src="/banner01.png" alt="토스트" />
+                <dl>
+                  <dt>{item?.orderMenus[0]?.menu?.name} 외 1건</dt>
+                  <dd>총 가격 18000원</dd>
+                </dl>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <li>주문내역이 없습니다.</li>
+        )}
       </ol>
     </div>
   );
