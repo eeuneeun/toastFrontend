@@ -600,3 +600,10 @@ a {
 .receipt .order-list img {
   width: 150px;
 }
+
+@media (min-width: 900px) {
+  .inner {
+    left: 50%;
+    margin-left: -450px;
+  }
+}

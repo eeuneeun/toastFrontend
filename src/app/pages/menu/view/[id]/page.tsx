@@ -38,25 +38,6 @@ export default function View() {
 
   const { cart, loading, error, fetchCart } = useCartStore();
 
-  const [toast, setToast] = useState({
-    id: nowMenuId,
-    name: "",
-    desc: "",
-    imgUrl: "",
-    price: 0,
-  });
-
-  const [reqData, setReqData] = useState({
-    customerId: "sacroo",
-    createdAt: new Date(),
-    cartMenus: [
-      {
-        menuId: nowMenuId,
-        quantity: 2,
-      },
-    ],
-  });
-
   const getItem = async () => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/menu/${nowMenuId}`,

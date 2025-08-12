@@ -8,7 +8,7 @@ type Props = {};
 
 export default function Order({}: Props) {
   const [list, setList] = useState([]);
-  const { storeId, setStoreId } = useOrderStore();
+  const { storeId, setStoreInfo } = useOrderStore();
 
   // 인근의 스토어 불러오기
   async function getStoreAll() {
@@ -46,9 +46,9 @@ export default function Order({}: Props) {
             <Link
               href="/pages/menu"
               className="flex-center"
-              onClick={() => setStoreId(item.storeId)}
+              onClick={() => setStoreInfo(item.storeId, item.storeName)}
             >
-              <img src="/store01.png" alt="신림 프리임 법학원점" />
+              <img src="/store01.png" alt={item.storeName} />
               <dl>
                 <dt>{item.storeName}</dt>
                 <dd>{item.address}</dd>

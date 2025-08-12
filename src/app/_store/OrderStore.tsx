@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import axios from "axios";
 
 interface OrderStore {
   storeId: string | null;
+  storeName: string | null;
   loading: boolean;
   error: string | null;
-  setStoreId: (storeId: string) => void;
+  setStoreInfo: (storeId: string, storeName: string) => void;
   createOrder: (
     userId: string,
     storeId: string,
@@ -16,11 +16,12 @@ interface OrderStore {
 
 export const useOrderStore = create<OrderStore>((set) => ({
   storeId: null,
+  storeName: null,
   loading: false,
   error: null,
 
-  setStoreId: (storeId: string) => {
-    set({ storeId: storeId });
+  setStoreInfo: (storeId: string, storeName: string) => {
+    set({ storeId: storeId, storeName: storeName });
   },
   // 주문 생성
   createOrder: async (userId, storeId, items) => {
