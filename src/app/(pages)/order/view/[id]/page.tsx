@@ -59,7 +59,7 @@ export default function View() {
       <Link href="../">상품 목록</Link>
       <Link
         href={{
-          pathname: `/pages/nomal/modify/${toast.id}`,
+          pathname: `/nomal/modify/${toast.id}`,
           query: { id: toast.id, ref: "home" },
         }}
       >
