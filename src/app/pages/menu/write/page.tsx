@@ -2,27 +2,26 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { MouseEventHandler, ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type ItemContents = {
-  id: number;
   category: string;
   name: string;
   price: number;
   desc: string;
   imgUrl: string;
-  create_at: Date;
+  create_at?: Date;
 };
 
-export default function Write({}: ItemContents) {
+export default function Write() {
   const router = useRouter();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
 
   const addItem = async (data: ItemContents) => {
-    const res = await fetch("${process.env.NEXT_PUBLIC_API_URL}/menu", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -42,7 +41,6 @@ export default function Write({}: ItemContents) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<ItemContents>();
 

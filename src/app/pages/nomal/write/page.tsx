@@ -9,7 +9,7 @@ type ItemContents = {
   contents: string;
 };
 
-export default function Write({}: ItemContents) {
+export default function Write() {
   const router = useRouter();
 
   const addItem = async (data: ItemContents) => {

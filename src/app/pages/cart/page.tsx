@@ -3,7 +3,6 @@
 import { useCartStore } from "@/app/_store/CartStore";
 import { useOrderStore } from "@/app/_store/OrderStore";
 import { useUserStore } from "@/app/_store/UserStore";
-import PlusMinus from "@/app/components/PlusMinus";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -41,7 +40,7 @@ export default function Cart({}: Props) {
 
     console.log(storeId);
     //@ts-ignore
-    const result = await createOrder(id, storeId, data);
+    const result = await createOrder(id, storeId, totalPrice, data);
     if (result) {
       clearCart(cart ? cart.id : 1);
       router.push("/");

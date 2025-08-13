@@ -1,6 +1,5 @@
 "use client";
 
-import { Pagination } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function Toast() {

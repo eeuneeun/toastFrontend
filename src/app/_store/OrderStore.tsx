@@ -9,6 +9,7 @@ interface OrderStore {
   createOrder: (
     userId: string,
     storeId: string,
+    totalPrice: number,
     items: { menuId: number; quantity: number }[]
   ) => Promise<boolean>;
   clearStoreInfo: () => void;
@@ -23,8 +24,9 @@ export const useOrderStore = create<OrderStore>((set) => ({
   setStoreInfo: (storeId: string, storeName: string) => {
     set({ storeId: storeId, storeName: storeName });
   },
+
   // 주문 생성
-  createOrder: async (userId, storeId, items) => {
+  createOrder: async (userId, storeId, totalPrice, items) => {
     set({ loading: true, error: null });
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
@@ -33,6 +35,7 @@ export const useOrderStore = create<OrderStore>((set) => ({
         body: JSON.stringify({
           customerId: userId,
           storeId: storeId,
+          totalPrice: totalPrice,
           cartMenus: items,
         }),
       });

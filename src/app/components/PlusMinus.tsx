@@ -10,7 +10,7 @@ export default function PlusMinus({ price, quantity }: Props) {
   const [totalCost, setTotalCost] = useState(0);
 
   function plus() {
-    let tmpData = nowMenu;
+    const tmpData = nowMenu;
 
     //@ts-ignore
     setNowMenu({
@@ -20,7 +20,7 @@ export default function PlusMinus({ price, quantity }: Props) {
   }
 
   function minus() {
-    let tmpData = nowMenu;
+    const tmpData = nowMenu;
 
     setNowMenu({
       ...tmpData,

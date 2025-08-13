@@ -3,9 +3,7 @@
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
-
-export default function Nav({}: Props) {
+export default function Nav() {
   return (
     <div className="nav">
       <ul>

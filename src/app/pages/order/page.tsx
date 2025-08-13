@@ -4,10 +4,14 @@ import { useOrderStore } from "@/app/_store/OrderStore";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-type Props = {};
+type ListItem = {
+  storeId: string;
+  storeName: string;
+  address: string;
+};
 
-export default function Order({}: Props) {
-  const [list, setList] = useState([]);
+export default function Order() {
+  const [list, setList] = useState<ListItem[]>([]);
   const { storeId, setStoreInfo } = useOrderStore();
 
   // 인근의 스토어 불러오기
@@ -43,7 +47,7 @@ export default function Order({}: Props) {
       <ol>
         {Array.isArray(list) ? (
           list.map((item, idx) => (
-            <li key={item + idx}>
+            <li key={item.storeName + idx}>
               <Link
                 href="/pages/menu"
                 className="flex-center"

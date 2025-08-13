@@ -7,9 +7,7 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LoginIcon from "@mui/icons-material/Login";
 
-type Props = {};
-
-export default function Header({}: Props) {
+export default function Header() {
   const { cart, loading, error, fetchCart } = useCartStore();
   const { id, name } = useUserStore();
   useEffect(() => {

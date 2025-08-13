@@ -5,7 +5,6 @@ import BreakfastDiningIcon from "@mui/icons-material/BreakfastDining";
 import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
 import KebabDiningIcon from "@mui/icons-material/KebabDining";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
-import { setMaxListeners } from "events";
 import { useEffect, useState } from "react";
 import { useUserStore } from "./_store/UserStore";
 

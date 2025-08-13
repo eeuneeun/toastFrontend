@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { title } from "process";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -19,9 +18,9 @@ export default function Modify() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
   const getItem = async () => {
-    const id = searchParams.get("id");
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`, {
       method: "GET",
     });

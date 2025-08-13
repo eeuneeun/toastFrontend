@@ -4,9 +4,9 @@ import { useUserStore } from "@/app/_store/UserStore";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-type Props = {};
+// type Props = {};
 
-export default function Receipt({}: Props) {
+export default function Receipt() {
   const [list, setList] = useState([]);
   const { id } = useUserStore();
 
@@ -37,8 +37,10 @@ export default function Receipt({}: Props) {
               <Link href="/pages/receipt/detail" className="flex-center">
                 <img src="/banner01.png" alt="토스트" />
                 <dl>
+                  {/* @ts-ignore */}
                   <dt>{item?.orderMenus[0]?.menu?.name} 외 1건</dt>
-                  <dd>총 가격 18000원</dd>
+                  {/* @ts-ignore */}
+                  <dd>총 가격 {item.totalPrice}원</dd>
                 </dl>
               </Link>
             </li>

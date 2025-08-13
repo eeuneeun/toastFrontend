@@ -19,9 +19,9 @@ export default function Modify() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
   const getItem = async () => {
-    const id = searchParams.get("id");
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`, {
       method: "GET",
     });
@@ -39,7 +39,6 @@ export default function Modify() {
   };
 
   async function updateItem(data: ItemContents) {
-    const id = searchParams.get("id");
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`, {
       method: "PUT",
       headers: {
