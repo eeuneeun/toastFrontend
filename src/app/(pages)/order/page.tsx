@@ -49,7 +49,7 @@ export default function Order() {
           list.map((item, idx) => (
             <li key={item.storeName + idx}>
               <Link
-                href="/pages/menu"
+                href="/menu"
                 className="flex-center"
                 onClick={() => setStoreInfo(item?.storeId, item?.storeName)}
               >

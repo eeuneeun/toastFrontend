@@ -26,7 +26,7 @@ export default function SignUp() {
       }),
     });
     if (res.status == 201) {
-      router.push("/pages/signIn");
+      router.push("/signIn");
     }
   };
 
