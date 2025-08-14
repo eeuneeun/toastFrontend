@@ -33,7 +33,7 @@ export default function MyPage() {
             <button>수정</button>
           </li>
           <li>
-            <Link href="/mypage/order">주문내역</Link>
+            <Link href="/pages/mypage/order">주문내역</Link>
           </li>
           <li>
             <button onClick={logout}>로그아웃</button>

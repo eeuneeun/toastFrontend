@@ -44,7 +44,7 @@ export default function Home() {
         <ul>
           {recomlist.map((item, idx) => (
             <li key={item.name + idx}>
-              <Link href="/menu">
+              <Link href="/pages/menu">
                 <img src={item.imgUrl || undefined} alt={item.name} />
                 <span>{item.name}</span>
               </Link>
@@ -57,25 +57,25 @@ export default function Home() {
         <h3>카테고리</h3>
         <ul>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <BreakfastDiningIcon />
               <span>Toast</span>
             </Link>
           </li>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <EmojiFoodBeverageIcon />
               <span>Beverage</span>
             </Link>
           </li>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <KebabDiningIcon />
               <span>Side</span>
             </Link>
           </li>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <FastfoodIcon />
               <span> Set</span>
             </Link>
@@ -87,25 +87,25 @@ export default function Home() {
         <h3>새 소식</h3>
         <ul>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <img src="/banner01.png" alt="news01" />
               <span>올여름 시원한 아이스 아메리카노와 토스트!</span>
             </Link>
           </li>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <img src="/banner01.png" alt="news01" />
               <span>올여름 시원한 아이스 아메리카노와 토스트!</span>
             </Link>
           </li>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <img src="/banner01.png" alt="news01" />
               <span>올여름 시원한 아이스 아메리카노와 토스트!</span>
             </Link>
           </li>
           <li>
-            <Link href="/menu">
+            <Link href="/pages/menu">
               <img src="/banner01.png" alt="news01" />
               <span>올여름 시원한 아이스 아메리카노와 토스트!</span>
             </Link>

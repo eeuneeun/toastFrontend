@@ -14,22 +14,19 @@ export default function SignUp() {
   const router = useRouter();
 
   const addItem = async (data: User) => {
-    const res = await fetch(
-      `ec2-43-203-161-224.ap-northeast-2.compute.amazonaws.com:4000/user`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: data.userId,
-          password: data.password,
-          name: data.name,
-          email: data.email,
-          nickname: data.nickname,
-        }),
-      }
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: data.userId,
+        password: data.password,
+        name: data.name,
+        email: data.email,
+        nickname: data.nickname,
+      }),
+    });
     if (res.status == 201) {
-      router.push("/signIn");
+      router.push("/pages/signIn");
     }
   };
 

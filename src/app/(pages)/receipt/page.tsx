@@ -34,7 +34,7 @@ export default function Receipt() {
         {Array.isArray(list) ? (
           list.map((item, idx) => (
             <li key={item + idx}>
-              <Link href="/receipt/detail" className="flex-center">
+              <Link href="/pages/receipt/detail" className="flex-center">
                 <img src="/banner01.png" alt="토스트" />
                 <dl>
                   {/* @ts-ignore */}

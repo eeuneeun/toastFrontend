@@ -53,7 +53,7 @@ export default function View() {
       <Link href="../">글목록</Link>
       <Link
         href={{
-          pathname: `/nomal/modify/${article.id}`,
+          pathname: `/pages/nomal/modify/${article.id}`,
           query: { id: article.id, ref: "home" },
         }}
       >

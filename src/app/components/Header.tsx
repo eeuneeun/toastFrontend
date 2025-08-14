@@ -22,11 +22,11 @@ export default function Header() {
 
         {id ? (
           <div>
-            <Link href="/mypage" className="mypage-btn">
+            <Link href="/pages/mypage" className="mypage-btn">
               <AccountBoxIcon />
             </Link>
             <Link
-              href="/cart"
+              href="/pages/cart"
               className={`${cart?.cartMenus ? "active" : ""} cart-btn`}
             >
               <ShoppingBagIcon />
@@ -34,8 +34,8 @@ export default function Header() {
           </div>
         ) : (
           <>
-            <Link href={"/signUp"} className="signup-btn"></Link>
-            <Link href={"/signIn"} className="signout-btn">
+            <Link href={"/pages/signUp"} className="signup-btn"></Link>
+            <Link href={"/pages/signIn"} className="signout-btn">
               <LoginIcon />
             </Link>
           </>
