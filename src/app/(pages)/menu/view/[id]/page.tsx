@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useCartStore } from "@/app/_store/CartStore";
 import { useMenuStore } from "@/app/_store/MenuStore";
 import { useUserStore } from "@/app/_store/UserStore";
+import { BasicModal } from "@/app/components/Modal";
 type Toast = {
   id: number;
   name: string;
@@ -28,15 +29,17 @@ type CartMenu = {
 
 export default function View() {
   const router = useRouter();
-  const { nowMenu, setNowMenu } = useMenuStore();
   const searchParams = useSearchParams();
   const paramId = searchParams.get("id");
 
-  //@ts-ignore
-  const nowMenuId = parseInt(paramId, 10);
+  const [open, setOpen] = React.useState(false);
 
   const { id } = useUserStore();
+  const { nowMenu, setNowMenu } = useMenuStore();
   const { cart, loading, error, fetchCart } = useCartStore();
+
+  //@ts-ignore
+  const nowMenuId = parseInt(paramId, 10);
 
   const getItem = async () => {
     const response = await fetch(
@@ -72,7 +75,8 @@ export default function View() {
 
     fetchCart(customerId);
     if (res.status == 201) {
-      router.push("../../menu");
+      setOpen(true);
+      // router.push("../../menu");
     }
   }
 
@@ -85,38 +89,47 @@ export default function View() {
   }, [fetchCart]);
 
   return (
-    <div className="menu-view">
-      <dl>
-        <dt>
-          <img
-            src={nowMenu?.imgUrl ? nowMenu?.imgUrl : "/banner01.png"}
-            alt={nowMenu?.name ? nowMenu?.name : "토스트"}
+    <>
+      <div className="menu-view">
+        <dl>
+          <dt>
+            <img
+              src={nowMenu?.imgUrl ? nowMenu?.imgUrl : "/banner01.png"}
+              alt={nowMenu?.name ? nowMenu?.name : "토스트"}
+            />
+          </dt>
+          <dd>{nowMenu?.name}</dd>
+          <dd>{nowMenu?.desc}</dd>
+        </dl>
+
+        <div>
+          <Link href="/">제품 상세 정보 </Link>
+        </div>
+
+        <div>
+          <PlusMinus
+            price={nowMenu?.price ? nowMenu?.price : 2000}
+            quantity={nowMenu?.quantity ? nowMenu?.quantity : 1}
           />
-        </dt>
-        <dd>{nowMenu?.name}</dd>
-        <dd>{nowMenu?.desc}</dd>
-      </dl>
+        </div>
 
-      <div>
-        <Link href="/">제품 상세 정보 </Link>
+        <div className="flex-between btn-wrap">
+          <button className="now-btn">바로 주문</button>
+          <button
+            className="cart-btn"
+            onClick={() => addToCart(id, nowMenu.id, nowMenu.quantity)}
+          >
+            장바구니 담기
+          </button>
+        </div>
       </div>
-
-      <div>
-        <PlusMinus
-          price={nowMenu?.price ? nowMenu?.price : 2000}
-          quantity={nowMenu?.quantity ? nowMenu?.quantity : 1}
-        />
-      </div>
-
-      <div className="flex-between btn-wrap">
-        <button className="now-btn">바로 주문</button>
-        <button
-          className="cart-btn"
-          onClick={() => addToCart(id, nowMenu.id, nowMenu.quantity)}
-        >
-          장바구니 담기
-        </button>
-      </div>
-    </div>
+      <BasicModal
+        title=""
+        contents="장바구니에 담겼습니다"
+        btnTxt="닫기"
+        isOpen={open}
+        setIsOpen={setOpen}
+      />
+    </>
   );
 }
