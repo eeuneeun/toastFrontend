@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserStore } from "@/app/_store/UserStore";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -52,6 +53,9 @@ export default function SignIn() {
         </label>
 
         <button>로그인</button>
+        <Link href={"/signUp"} className="signup-btn">
+          회원가입
+        </Link>
       </form>
     </div>
   );

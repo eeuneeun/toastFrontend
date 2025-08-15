@@ -34,7 +34,6 @@ export default function Header() {
           </div>
         ) : (
           <>
-            <Link href={"/signUp"} className="signup-btn"></Link>
             <Link href={"/signIn"} className="signout-btn">
               <LoginIcon />
             </Link>

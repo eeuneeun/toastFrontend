@@ -127,7 +127,7 @@ export default function Toast() {
             ))}
         </ol>
 
-        <Link href={"./menu/write"}>글쓰기</Link>
+        {/* <Link href={"./menu/write"}>글쓰기</Link> */}
       </div>
     </>
   );

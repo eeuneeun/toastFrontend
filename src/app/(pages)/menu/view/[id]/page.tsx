@@ -112,7 +112,7 @@ export default function View() {
         <button className="now-btn">바로 주문</button>
         <button
           className="cart-btn"
-          onClick={() => addToCart(id, nowMenuId, 1)}
+          onClick={() => addToCart(id, nowMenu.id, nowMenu.quantity)}
         >
           장바구니 담기
         </button>
