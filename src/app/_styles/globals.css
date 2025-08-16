@@ -52,7 +52,7 @@ a {
 /* header */
 .header {
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -97,7 +97,7 @@ a {
 /* nav */
 .nav {
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
