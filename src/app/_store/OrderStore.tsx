@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { PaymentInfo } from "../(pages)/cart/payment/pages";
 
 interface OrderStore {
   storeId: string | null;
@@ -8,9 +9,7 @@ interface OrderStore {
   error: string | null;
   setStoreInfo: (storeId: string, storeName: string) => void;
   createOrder: (
-    userId: string,
-    storeId: string,
-    totalPrice: number,
+    paymentInfo: PaymentInfo,
     items: { menuId: number; quantity: number }[]
   ) => Promise<boolean>;
   clearStoreInfo: () => void;
@@ -29,16 +28,14 @@ export const useOrderStore = create<OrderStore>()(
       },
 
       // 주문 생성
-      createOrder: async (userId, storeId, totalPrice, items) => {
+      createOrder: async (paymentInfo: PaymentInfo, items) => {
         set({ loading: true, error: null });
         try {
           const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              customerId: userId,
-              storeId: storeId,
-              totalPrice: totalPrice,
+              paymentInfo: paymentInfo,
               cartMenus: items,
             }),
           });
@@ -55,7 +52,7 @@ export const useOrderStore = create<OrderStore>()(
       },
 
       // 주문 점포 비우기
-      clearStoreInfo: () => set({ storeId: null }),
+      clearStoreInfo: () => set({ storeId: null, storeName: null }),
     }),
     {
       name: "store-storage",

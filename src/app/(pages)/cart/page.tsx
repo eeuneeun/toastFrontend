@@ -38,9 +38,20 @@ export default function Cart({}: Props) {
       });
     });
 
-    console.log(storeId);
+    const paymentInfo = {
+      storeId: storeId ? storeId : 0,
+      totalPrice: totalPrice,
+      paymentMethod: "카드",
+      customerId: id,
+      customerName: name,
+      customerPhone: "010-3940-2222",
+      deliveryMethod: "배달",
+      deliveryAddress: "서울시 관악구 봉천동",
+      status: "WAITING",
+    };
+
     //@ts-ignore
-    const result = await createOrder(id, storeId, totalPrice, data);
+    const result = await createOrder(paymentInfo, data);
     if (result) {
       clearCart(cart ? cart.id : 1);
       router.push("/");

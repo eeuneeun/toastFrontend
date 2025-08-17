@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 
 interface UserStore {
   id: string;
+  userId: string;
   name: string;
   accessToken: string | null;
   error: string | null;
@@ -15,6 +16,7 @@ export const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
       id: "",
+      userId: "",
       name: "",
       accessToken: null,
       error: null,
@@ -36,6 +38,7 @@ export const useUserStore = create<UserStore>()(
           console.log("data", data);
           set({
             id: data.user.id,
+            userId: data.user.userId,
             name: data.user.username,
             accessToken: "QWEQ1KJWEJLQKWEw",
           });
