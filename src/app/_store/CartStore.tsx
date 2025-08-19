@@ -24,8 +24,10 @@ interface Cart {
 
 interface CartState {
   cart: Cart | null;
+  totalPrice: number;
   loading: boolean;
   error: string | null;
+  setTotalPrice: (price: number) => void;
   getCart: (cartId: number) => Promise<void>;
   fetchCart: (customerId: string) => Promise<void>;
   createCart: (
@@ -44,8 +46,15 @@ export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       cart: null,
+      totalPrice: 0,
       loading: false,
       error: null,
+
+      setTotalPrice: (price: number) => {
+        set({
+          totalPrice: price,
+        });
+      },
       // ✅ 장바구니 불러오기
       getCart: async (cartId: number) => {
         if (!cartId) {

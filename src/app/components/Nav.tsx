@@ -14,7 +14,7 @@ export default function Nav() {
           <Link href="/menu">메뉴</Link>
         </li>
         <li>
-          <Link href="/order">토스트 오더</Link>
+          <Link href="/store">토스트 오더</Link>
         </li>
         <li>
           <Link href="/receipt">주문 내역</Link>

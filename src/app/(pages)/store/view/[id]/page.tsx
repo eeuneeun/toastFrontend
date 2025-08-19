@@ -56,16 +56,15 @@ export default function View() {
         <dd>{}</dd>
       </dl>
 
-      <Link href="../">상품 목록</Link>
+      <Link href="../">상점 목록</Link>
       <Link
         href={{
-          pathname: `/nomal/modify/${toast.id}`,
+          pathname: `/store`,
           query: { id: toast.id, ref: "home" },
         }}
       >
-        상품 수정
+        상점 선택
       </Link>
-      <a onClick={() => delItem()}>상품 삭제</a>
     </div>
   );
 }

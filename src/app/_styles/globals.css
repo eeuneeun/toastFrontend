@@ -601,6 +601,18 @@ a {
   width: 150px;
 }
 
+/* order-status */
+.order-status {
+  background: #000;
+  color: #fff;
+  position: fixed;
+  bottom: 75px;
+  left: 5px;
+  z-index: 999;
+  padding: 5px;
+  border-radius: 3px;
+}
+
 @media (min-width: 900px) {
   .inner {
     left: 50%;

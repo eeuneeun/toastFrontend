@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { PaymentInfo } from "../(pages)/cart/payment/pages";
+import { PaymentInfo } from "../(pages)/payment/page";
 
 interface OrderStore {
   storeId: string | null;
   storeName: string | null;
-  loading: boolean;
+  orderStatus: string;
   error: string | null;
   setStoreInfo: (storeId: string, storeName: string) => void;
   createOrder: (
@@ -20,7 +20,7 @@ export const useOrderStore = create<OrderStore>()(
     (set) => ({
       storeId: null,
       storeName: null,
-      loading: false,
+      orderStatus: "NONE",
       error: null,
 
       setStoreInfo: (storeId: string, storeName: string) => {
@@ -29,7 +29,7 @@ export const useOrderStore = create<OrderStore>()(
 
       // 주문 생성
       createOrder: async (paymentInfo: PaymentInfo, items) => {
-        set({ loading: true, error: null });
+        set({ orderStatus: "WAITING" });
         try {
           const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
             method: "POST",
@@ -43,10 +43,9 @@ export const useOrderStore = create<OrderStore>()(
           const result = await res.json();
           console.log(result);
 
-          set({ loading: false });
           return true;
         } catch (err: any) {
-          set({ error: err.message, loading: false });
+          set({ error: err.message, orderStatus: "NONE" });
           return false;
         }
       },

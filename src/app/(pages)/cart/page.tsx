@@ -20,16 +20,29 @@ type plusMinusData = {
 export default function Cart({}: Props) {
   const router = useRouter();
 
-  const [totalPrice, setTotalPrice] = useState(0);
-
   const { id, name } = useUserStore();
   const { storeId, storeName, createOrder } = useOrderStore();
-  const { cart, loading, error, getCart, updateCartItem, clearCart } =
-    useCartStore();
+  const {
+    cart,
+    totalPrice,
+    setTotalPrice,
+    getCart,
+    updateCartItem,
+    clearCart,
+  } = useCartStore();
   const fetchCart = useCartStore((state) => state.fetchCart);
 
   // ✅ 주문하기
   async function order() {
+    if (totalPrice > 0) {
+      setTotalPrice(totalPrice);
+      router.push(`/payment`);
+      return false;
+    } else {
+      alert("상품을 담아주세요!");
+      return false;
+    }
+
     let data: reqCartData[] = [];
     await cart?.cartMenus.map((item, idx) => {
       data.push({
@@ -40,7 +53,7 @@ export default function Cart({}: Props) {
 
     const paymentInfo = {
       storeId: storeId ? storeId : 0,
-      totalPrice: totalPrice,
+      totalPrice: tmpTotalPrice,
       paymentMethod: "카드",
       customerId: id,
       customerName: name,
@@ -81,18 +94,18 @@ export default function Cart({}: Props) {
   }, [cart?.id]);
 
   useEffect(() => {
-    let tmpTotalPrice = 0;
+    let tmpPrice = 0;
 
     cart?.cartMenus.map((item, idx) => {
       const eachMenuTotalPrice = item.menu.price * item.quantity;
-      tmpTotalPrice = tmpTotalPrice + eachMenuTotalPrice;
+      tmpPrice = tmpPrice + eachMenuTotalPrice;
     });
-    setTotalPrice(tmpTotalPrice);
+    setTotalPrice(tmpPrice);
   }, [cart?.cartMenus]);
 
   return (
     <div className="cart">
-      <h2>장바구니</h2>
+      <h2>주문서</h2>
       <h3>{storeName}</h3>
       <ol>
         {Array.isArray(cart?.cartMenus) ? (

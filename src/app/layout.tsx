@@ -4,6 +4,8 @@ import "./_styles/reset.css";
 import "./_styles/globals.css";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
+import { useOrderStore } from "./_store/OrderStore";
+import OrderStatus from "./components/OrderStatus";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +33,7 @@ export default function RootLayout({
         <Header />
         <div className="inner">{children}</div>
         <Nav />
+        <OrderStatus />
       </body>
     </html>
   );
