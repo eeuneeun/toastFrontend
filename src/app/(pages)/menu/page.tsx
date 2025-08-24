@@ -1,8 +1,11 @@
 "use client";
 
+import { useOrderStore } from "@/app/_store/OrderStore";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useStore } from "zustand";
 export default function Toast() {
+  const { storeId } = useOrderStore();
   const [tab, setTab] = useState("new");
   const [list, setList] = useState<any[]>([
     {
@@ -16,9 +19,12 @@ export default function Toast() {
 
   // 데이터 불러오기
   async function getMenuAll() {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_OWNER_API_URL}/menu/store/${storeId}`,
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     console.log(data);
     setList(data);
@@ -38,7 +44,7 @@ export default function Toast() {
 
   useEffect(() => {
     getMenuAll();
-  }, []);
+  }, [storeId]);
 
   return (
     <>

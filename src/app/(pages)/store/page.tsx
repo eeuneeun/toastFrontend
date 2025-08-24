@@ -5,8 +5,8 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 type ListItem = {
-  storeId: string;
-  storeName: string;
+  id: string;
+  name: string;
   address: string;
 };
 
@@ -47,15 +47,15 @@ export default function Order() {
       <ol>
         {Array.isArray(list) ? (
           list.map((item, idx) => (
-            <li key={item.storeName + idx}>
+            <li key={item.name + idx}>
               <Link
                 href="/menu"
                 className="flex-center"
-                onClick={() => setStoreInfo(item?.storeId, item?.storeName)}
+                onClick={() => setStoreInfo(item?.id, item?.name)}
               >
-                <img src="/store01.png" alt={item.storeName} />
+                <img src="/store01.png" alt={item.name} />
                 <dl>
-                  <dt>{item.storeName}</dt>
+                  <dt>{item.name}</dt>
                   <dd>{item.address}</dd>
                   <dd>163m</dd>
                 </dl>

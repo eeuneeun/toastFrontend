@@ -7,6 +7,7 @@ import { useCartStore } from "@/app/_store/CartStore";
 import { useMenuStore } from "@/app/_store/MenuStore";
 import { useUserStore } from "@/app/_store/UserStore";
 import { BasicModal } from "@/app/components/Modal";
+import { useOrderStore } from "@/app/_store/OrderStore";
 type Toast = {
   id: number;
   name: string;
@@ -34,21 +35,30 @@ export default function View() {
 
   const [open, setOpen] = React.useState(false);
 
-  const { id } = useUserStore();
+  const { id, accessToken } = useUserStore();
   const { nowMenu, setNowMenu } = useMenuStore();
   const { cart, loading, error, fetchCart } = useCartStore();
+  const { storeId } = useOrderStore();
 
+  console.log(storeId);
   //@ts-ignore
   const nowMenuId = parseInt(paramId, 10);
 
   const getItem = async () => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/menu/${nowMenuId}`,
+      `${
+        process.env.NEXT_PUBLIC_OWNER_API_URL
+      }/menu/${nowMenuId}/store/${Number(storeId)}`,
       {
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
       }
     );
     const data: Toast = await response.json();
+    console.log(data);
     setNowMenu({
       ...data,
       quantity: 1,
