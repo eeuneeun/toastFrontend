@@ -29,7 +29,7 @@ export default function PlusMinus({ price, quantity }: Props) {
   }
 
   useEffect(() => {
-    setTotalCost(nowMenu.price * nowMenu.quantity);
+    setTotalCost(Number(nowMenu.price) * nowMenu.quantity);
   }, [nowMenu.quantity]);
   return (
     <ol className="flex-between">

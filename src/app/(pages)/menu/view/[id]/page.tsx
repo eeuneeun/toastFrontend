@@ -46,9 +46,9 @@ export default function View() {
 
   const getItem = async () => {
     const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_OWNER_API_URL
-      }/menu/${nowMenuId}/store/${Number(storeId)}`,
+      `${process.env.NEXT_PUBLIC_OWNER_API_URL}/menu/${Number(
+        nowMenuId
+      )}/store/${Number(storeId)}`,
       {
         method: "GET",
         headers: {
@@ -57,7 +57,7 @@ export default function View() {
         },
       }
     );
-    const data: Toast = await response.json();
+    const data = await response.json();
     console.log(data);
     setNowMenu({
       ...data,
@@ -116,6 +116,28 @@ export default function View() {
           <Link href="/">제품 상세 정보 </Link>
         </div>
 
+        <div>
+          <h3>추가 옵션</h3>
+          {Array.isArray(nowMenu?.menuGroups) &&
+            nowMenu?.menuGroups?.map((item, idx) => (
+              <div className="add-option">
+                <dl key={item?.group?.name + idx} className="option-group">
+                  <dt>{item?.group?.name}</dt>
+                  <dd>{item?.group?.desc}</dd>
+                </dl>
+
+                <div className="option">
+                  {item?.group?.groupOptions?.map((optionItem, idx) => (
+                    <dl key={optionItem?.option?.name + idx}>
+                      <dt>{optionItem?.option?.name}</dt>
+                      <dd>{optionItem?.option?.desc}</dd>
+                      <dd>{optionItem?.option?.price}</dd>
+                    </dl>
+                  ))}
+                </div>
+              </div>
+            ))}
+        </div>
         <div>
           <PlusMinus
             price={nowMenu?.price ? nowMenu?.price : 2000}

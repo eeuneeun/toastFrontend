@@ -613,6 +613,47 @@ a {
   border-radius: 3px;
 }
 
+/* add-option */
+
+.add-option {
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+.add-option .option-group {
+  width: 100%;
+}
+.add-option .option-group dt {
+  font-size: 18px;
+  font-weight: 600;
+  height: 30px;
+  justify-content: flex-start;
+}
+.add-option .option-group dd {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  justify-content: flex-start;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.add-option .option {
+  width: 100%;
+}
+.add-option .option dl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.add-option .option dt,
+.add-option .option dd {
+  height: unset;
+  justify-content: flex-start;
+  border: 0 !important;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 5px 15px !important;
+}
 @media (min-width: 900px) {
   .inner {
     left: 50%;
