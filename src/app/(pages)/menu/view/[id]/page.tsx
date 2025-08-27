@@ -14,7 +14,7 @@ type Toast = {
   desc: string;
   imgUrl: string;
   price: number;
-  create_at: Date;
+  menuGroups: [];
 };
 
 type Cart = {
@@ -132,6 +132,13 @@ export default function View() {
                       <dt>{optionItem?.option?.name}</dt>
                       <dd>{optionItem?.option?.desc}</dd>
                       <dd>{optionItem?.option?.price}</dd>
+                      <dd>
+                        <input
+                          type="checkbox"
+                          name={optionItem?.option?.name}
+                          id={optionItem?.option?.id + ""}
+                        />
+                      </dd>
                     </dl>
                   ))}
                 </div>

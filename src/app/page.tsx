@@ -21,9 +21,12 @@ export default function Home() {
   ]);
   // 데이터 불러오기
   async function request() {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_OWNER_API_URL}/menu/store/1`,
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     console.log(data);
     recomSetList(data);

@@ -456,7 +456,27 @@ a {
 .menu-view {
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
   background: #eee;
+}
+.menu-view h3 {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 0 15px 20px;
+  position: relative;
+}
+.menu-view h3::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #4e4e4e;
+  position: absolute;
+  top: 10px;
+  left: 2px;
 }
 .menu-view dl {
   width: 100%;
@@ -582,7 +602,7 @@ a {
 .receipt {
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 15px;
   background: #eee;
 }
 
@@ -601,6 +621,33 @@ a {
   width: 150px;
 }
 
+/* receipt detail */
+.receipt.detail {
+  width: 100%;
+}
+
+.receipt.detail .contents {
+  background: #fff;
+  padding: 20px;
+}
+
+.receipt.detail .contents h3,
+.receipt.detail .contents h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #646464;
+  padding-top: 20px;
+}
+
+.receipt.detail .contents h4 {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.receipt.detail .contents dl dt {
+  width: 100px;
+}
+
 /* order-status */
 .order-status {
   background: #000;
@@ -617,17 +664,20 @@ a {
 
 .add-option {
   width: 100%;
+  padding: 0 15px;
   padding-bottom: 25px;
 }
 
 .add-option .option-group {
   width: 100%;
+  padding-bottom: 10px;
 }
 .add-option .option-group dt {
   font-size: 18px;
   font-weight: 600;
   height: 30px;
   justify-content: flex-start;
+  color: #646464;
 }
 .add-option .option-group dd {
   font-size: 15px !important;
@@ -635,24 +685,27 @@ a {
   justify-content: flex-start;
   padding: 0 !important;
   border: 0 !important;
+  color: #646464;
 }
 
 .add-option .option {
   width: 100%;
 }
 .add-option .option dl {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .add-option .option dt,
 .add-option .option dd {
+  width: 25%;
   height: unset;
   justify-content: flex-start;
   border: 0 !important;
   font-size: 15px;
   font-weight: 500;
-  padding: 5px 15px !important;
+  padding: 5px 0 !important;
 }
 @media (min-width: 900px) {
   .inner {

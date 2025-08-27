@@ -77,7 +77,7 @@ export default function pages() {
   };
   return (
     <div>
-      <h2>회원가입</h2>
+      <h2>결제</h2>
       <form action="post" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="customerName">
           주문자 성함

@@ -119,7 +119,7 @@ export default function Toast() {
                 >
                   <div className="img-wrap">
                     <img
-                      src={item.imgUrl ? item.imgUrl : "/banner01.png"}
+                      src={item.imgUrl ? item?.imgUrl : "/banner01.png"}
                       alt={item.name}
                     />
                   </div>

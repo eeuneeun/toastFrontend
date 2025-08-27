@@ -3,7 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function UploadForm() {
+export default function ImgUploader() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
@@ -17,7 +17,10 @@ export default function UploadForm() {
     }
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
     if (!selectedFile) return;
 
     const formData = new FormData();
@@ -25,7 +28,7 @@ export default function UploadForm() {
 
     try {
       const response = await axios.post(
-        "${process.env.NEXT_PUBLIC_API_URL}/menu/upload",
+        `${process.env.NEXT_PUBLIC_API_URL}/upload/image`,
         formData,
         {
           headers: {
