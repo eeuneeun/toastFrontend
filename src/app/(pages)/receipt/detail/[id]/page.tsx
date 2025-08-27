@@ -87,7 +87,7 @@ export default function Order({}: Props) {
         <div>
           <h4>주문 메뉴</h4>
           {orderInfo?.orderMenus?.map((item, idx) => (
-            <ul>
+            <ul key={item.menu.name + idx}>
               <li>
                 <img src={item.menu.imgUrl} alt={item.menu.name} />
               </li>
