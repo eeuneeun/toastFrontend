@@ -65,7 +65,7 @@ export default function Receipt() {
                 }}
                 className="flex-center"
               >
-                <img src={item.imgUrl} alt={item.id} />
+                <img src={item.orderMenus[0]?.menu?.imgUrl} alt={item.id} />
                 <dl>
                   {/* @ts-ignore */}
                   <dt>{item?.orderMenus[0]?.menu?.name} 외 1건</dt>
