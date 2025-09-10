@@ -53,7 +53,7 @@ export default function Cart({}: Props) {
 
     const paymentInfo = {
       storeId: storeId ? storeId : 0,
-      totalPrice: tmpTotalPrice,
+      totalPrice: totalPrice,
       paymentMethod: "카드",
       customerId: id,
       customerName: name,
