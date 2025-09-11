@@ -16,9 +16,12 @@ export default function Order() {
 
   // 인근의 스토어 불러오기
   async function getStoreAll() {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_OWNER_API_URL}/store`,
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     console.log(data);
     setList(data);
