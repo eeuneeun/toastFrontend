@@ -120,7 +120,7 @@ export default function View() {
           <h3>추가 옵션</h3>
           {Array.isArray(nowMenu?.menuGroups) &&
             nowMenu?.menuGroups?.map((item, idx) => (
-              <div className="add-option">
+              <div className="add-option" key={item.group.name + idx}>
                 <dl key={item?.group?.name + idx} className="option-group">
                   <dt>{item?.group?.name}</dt>
                   <dd>{item?.group?.desc}</dd>
