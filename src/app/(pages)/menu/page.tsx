@@ -32,7 +32,7 @@ export default function Toast() {
 
   async function getMenuByCategory(category: string) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/menu/category/${category}`,
+      `${process.env.NEXT_PUBLIC_OWNER_API_URL}/menu/category/${category}`,
       {
         method: "GET",
       }

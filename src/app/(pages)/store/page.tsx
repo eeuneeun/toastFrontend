@@ -56,10 +56,10 @@ export default function Order() {
                 className="flex-center"
                 onClick={() => setStoreInfo(item?.id, item?.name)}
               >
-                <img src="/store01.png" alt={item.name} />
+                <img src="/store01.png" alt={item?.name} />
                 <dl>
-                  <dt>{item.name}</dt>
-                  <dd>{item.address}</dd>
+                  <dt>{item?.name}</dt>
+                  <dd>{item?.address}</dd>
                   <dd>163m</dd>
                 </dl>
               </Link>

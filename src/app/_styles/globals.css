@@ -231,7 +231,6 @@ a {
 }
 .main .recommend ul li a {
   width: 100%;
-  background: #fff;
   flex-direction: column;
   margin-top: 25px;
 }

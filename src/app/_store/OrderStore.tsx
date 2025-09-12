@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import { PaymentInfo } from "../(pages)/payment/page";
 
 interface OrderStore {
-  storeId: string | null;
+  storeId: number | null;
   storeName: string | null;
   orderStatus: string;
   error: string | null;
@@ -18,8 +18,8 @@ interface OrderStore {
 export const useOrderStore = create<OrderStore>()(
   persist(
     (set) => ({
-      storeId: null,
-      storeName: null,
+      storeId: 1,
+      storeName: "낙성대점",
       orderStatus: "NONE",
       error: null,
 
