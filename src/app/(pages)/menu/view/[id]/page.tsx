@@ -72,8 +72,8 @@ export default function View() {
   ) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/add`, {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
-      // credentials: "include",
       body: JSON.stringify({
         customerId,
         menuId,
