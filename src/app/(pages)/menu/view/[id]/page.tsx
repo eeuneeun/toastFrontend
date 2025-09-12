@@ -72,12 +72,11 @@ export default function View() {
   ) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/add`, {
       method: "POST",
-      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        customerId,
-        menuId,
-        quantity,
+        customerId: customerId,
+        menuId: menuId,
+        quantity: quantity,
       }),
     });
 
@@ -121,7 +120,7 @@ export default function View() {
           <h3>추가 옵션</h3>
           {Array.isArray(nowMenu?.menuGroups) &&
             nowMenu?.menuGroups?.map((item, idx) => (
-              <div className="add-option" key={item.group.name + idx}>
+              <div className="add-option">
                 <dl key={item?.group?.name + idx} className="option-group">
                   <dt>{item?.group?.name}</dt>
                   <dd>{item?.group?.desc}</dd>
