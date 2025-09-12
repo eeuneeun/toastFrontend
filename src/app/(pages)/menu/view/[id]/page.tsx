@@ -70,19 +70,16 @@ export default function View() {
     menuId: number,
     quantity: number
   ) {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_OWNER_API_URL}/cart/add`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        // credentials: "include",
-        body: JSON.stringify({
-          customerId,
-          menuId,
-          quantity,
-        }),
-      }
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/add`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // credentials: "include",
+      body: JSON.stringify({
+        customerId,
+        menuId,
+        quantity,
+      }),
+    });
 
     const data = await res.json();
     console.log(data);
