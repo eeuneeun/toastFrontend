@@ -70,7 +70,7 @@ export default function View() {
     menuId: number,
     quantity: number
   ) {
-    const res = await fetch(`http://34.158.210.111:4000/cart/add`, {
+    const res = await fetch(`http://34.158.210.111:4000/api/cart/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

@@ -7,7 +7,7 @@ interface OrderStore {
   storeName: string | null;
   orderStatus: string;
   error: string | null;
-  setStoreInfo: (storeId: string, storeName: string) => void;
+  setStoreInfo: (storeId: number, storeName: string) => void;
   createOrder: (
     paymentInfo: PaymentInfo,
     items: { menuId: number; quantity: number }[]
@@ -23,7 +23,7 @@ export const useOrderStore = create<OrderStore>()(
       orderStatus: "NONE",
       error: null,
 
-      setStoreInfo: (storeId: string, storeName: string) => {
+      setStoreInfo: (storeId: number, storeName: string) => {
         set({ storeId: storeId, storeName: storeName });
       },
 
