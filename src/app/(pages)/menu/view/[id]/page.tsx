@@ -75,8 +75,8 @@ export default function View() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         customerId: customerId,
-        menuId: menuId,
-        quantity: quantity,
+        menuId: Number(menuId),
+        quantity: Number(quantity),
       }),
     });
 
