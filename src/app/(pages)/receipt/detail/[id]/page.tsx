@@ -46,7 +46,7 @@ export default function Order({}: Props) {
   // 해당 유저 아이디의 주문내역 전체 호출
   async function getReceipt() {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/order/${orderId}`,
+      `${process.env.NEXT_PUBLIC_OWNER_API_URL}/order/${orderId}`,
       {
         method: "GET",
         headers: {
