@@ -16,9 +16,9 @@ export default function Receipt() {
   async function getMenuById(menuId: number) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
       method: "GET",
-      headers: {
-        customerId: id,
-      },
+      // headers: {
+      //   customerId: id,
+      // },
     });
     const data = await response.json();
     console.log(data);
@@ -28,9 +28,9 @@ export default function Receipt() {
   async function getReceiptAll() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
       method: "GET",
-      headers: {
-        customerId: id,
-      },
+      // headers: {
+      //   customerId: id,
+      // },
     });
     const data = await response.json();
     console.log(data);
