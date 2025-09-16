@@ -70,6 +70,16 @@ export default function View() {
     menuId: number,
     quantity: number
   ) {
+    if (accessToken == null || id == "") {
+      alert("주문을 위해 로그인을 해주세요");
+      router.push("../../signIn");
+      return false;
+    }
+    if (storeId == null || storeId == 0) {
+      alert("상점을 먼저 선택해주세요");
+      router.push("../../store");
+      return false;
+    }
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

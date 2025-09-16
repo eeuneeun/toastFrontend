@@ -1,3 +1,5 @@
+import { SignJWT } from "jose";
+import { NextResponse } from "next/server";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -35,12 +37,26 @@ export const useUserStore = create<UserStore>()(
             }
           );
           const data = await res.json();
-          console.log("data", data);
+
           set({
             id: data.user.id,
             userId: data.user.userId,
             name: data.user.username,
             accessToken: "QWEQ1KJWEJLQKWEw",
+          });
+          const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+
+          const token = await new SignJWT({ name })
+            .setProtectedHeader({ alg: "HS256" })
+            .setExpirationTime("1h")
+            .sign(secret);
+
+          const respose = NextResponse.json({ success: true });
+          respose.cookies.set("authToken", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            path: "/",
+            maxAge: 60 * 60,
           });
 
           return true;

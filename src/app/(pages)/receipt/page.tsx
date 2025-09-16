@@ -63,15 +63,28 @@ export default function Receipt() {
                   pathname: `./receipt/detail/${item?.id}`,
                   query: { id: item?.id, ref: "receipt" },
                 }}
-                className="flex-center"
+                className="flex-between"
               >
-                <img src={item.orderMenus[0]?.menu?.imgUrl} alt={item.id} />
-                <dl>
-                  {/* @ts-ignore */}
-                  <dt>{item?.orderMenus[0]?.menu?.name} 외 1건</dt>
-                  {/* @ts-ignore */}
-                  <dd>총 가격 {item.totalPrice}원</dd>
-                </dl>
+                <div className="flex-center">
+                  <img src={item.orderMenus[0]?.menu?.imgUrl} alt={item.id} />
+                  <dl>
+                    {/* @ts-ignore */}
+                    <dt>{item?.orderMenus[0]?.menu?.name} 외 1건</dt>
+                    {/* @ts-ignore */}
+                    <dd>총 가격 {item.totalPrice}원</dd>
+                  </dl>
+                </div>
+                <span className="badge">
+                  {item.status == "WAITING"
+                    ? "주문 수락 대기중"
+                    : item.status == "IN_PROGRESS"
+                    ? "조리중"
+                    : item.status == "DELIVERY"
+                    ? "배달 중"
+                    : item.status == "PICKUP"
+                    ? "픽업 대기 중"
+                    : item.status == "COMPLETE" && "조리 완료"}
+                </span>
               </Link>
             </li>
           ))

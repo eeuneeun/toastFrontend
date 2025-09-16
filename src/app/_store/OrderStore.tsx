@@ -18,7 +18,7 @@ interface OrderStore {
 export const useOrderStore = create<OrderStore>()(
   persist(
     (set) => ({
-      storeId: 1,
+      storeId: 0,
       storeName: "낙성대점",
       orderStatus: "NONE",
       error: null,

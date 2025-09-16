@@ -612,14 +612,22 @@ a {
   margin-bottom: 15px;
 }
 .receipt .order-list li a {
-  justify-content: flex-start;
+  width: 100%;
+  justify-content: space-between;
   gap: 15px;
 }
 
 .receipt .order-list img {
   width: 150px;
+  margin-right: 25px;
 }
 
+.badge {
+  padding: 5px;
+  background: #177099;
+  color: #fff;
+  border-radius: 5px;
+}
 /* receipt detail */
 .receipt.detail {
   width: 100%;
@@ -706,6 +714,7 @@ a {
   font-weight: 500;
   padding: 5px 0 !important;
 }
+
 @media (min-width: 900px) {
   .inner {
     left: 50%;
