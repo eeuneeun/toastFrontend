@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 
 export default function MyPage() {
   const router = useRouter();
-  const { id, accessToken, signOut } = useUserStore();
+  const { id, name, accessToken, signOut } = useUserStore();
 
   async function logout() {
-    const result = await (accessToken && signOut(id, accessToken));
+    const result = await signOut();
     if (result) {
       router.push("/");
     }
@@ -21,11 +21,11 @@ export default function MyPage() {
         <img src="/vercel.svg" alt="프로필 사진" />
         <ul>
           <li>
-            이름 : 원은재
+            아이디 : {id}
             <button>수정</button>
           </li>
           <li>
-            닉네임 : 은은
+            닉네임 : {name}
             <button>수정</button>
           </li>
           <li>

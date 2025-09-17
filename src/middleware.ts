@@ -5,12 +5,12 @@ import { jwtVerify } from "jose";
 
 // 보호할 경로 지정
 export const config = {
-  matcher: ["/cart/:path*", "/mypage/:path*", "/receipt/:path*"],
+  matcher: ["/cart", "/mypage", "/receipt"],
 };
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("authToken")?.value;
-  console.log("diq", token);
+
   if (!token) {
     return NextResponse.redirect(new URL("/signIn", request.url));
   }

@@ -36,7 +36,7 @@ export const useUserStore = create<UserStore>()(
 
           if (!res.ok) return false;
           const data = await res.json();
-
+          console.log(data);
           set({
             userId: data.user.userId,
             name: data.user.username,
@@ -48,7 +48,7 @@ export const useUserStore = create<UserStore>()(
           return false;
         }
       },
-      signOut: async (userId, accToken) => {
+      signOut: async () => {
         const res = await fetch(`/api/signout`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -58,14 +58,10 @@ export const useUserStore = create<UserStore>()(
         set({
           id: "",
           name: "",
-          accessToken: "",
+          accessToken: null,
         });
 
         return true;
-        // } catch (err: any) {
-        //   console.log(err);
-        //   return false;
-        // }
       },
       // accToken 갱신
       fetchAccToken: async (newAccToken) => {

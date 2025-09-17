@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { SignJWT } from "jose";
+import { redirect } from "next/navigation";
 
 type resultData = {
   message: string;
@@ -9,7 +10,7 @@ type resultData = {
     name: string;
   };
 };
-export async function POST(req: Request): Promise<resultData> {
+export async function POST(req: Request) {
   const { userId, password } = await req.json();
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
     method: "POST",
@@ -21,6 +22,7 @@ export async function POST(req: Request): Promise<resultData> {
   });
   const data: resultData = await res.json();
 
+  console.log(data);
   // 👉 여기는 DB나 외부 API 인증 로직 자리
   if (data.message == "Login successful") {
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -37,14 +39,8 @@ export async function POST(req: Request): Promise<resultData> {
       path: "/",
       maxAge: 60 * 60,
     });
+    return res;
+  } else {
+    return NextResponse.json({ success: false }, { status: 401 });
   }
-
-  return NextResponse.json({
-    message: data.message,
-    user: {
-      id: data.user.id,
-      password: data.user.password,
-      name: data.user.name,
-    },
-  });
 }
