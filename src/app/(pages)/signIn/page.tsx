@@ -15,7 +15,7 @@ export default function SignIn() {
 
   async function login(data: User) {
     const res = await signIn(data.userId, data.password);
-    if (res.message == "Login successful") {
+    if (res.success == true) {
       router.push("/");
     }
   }
