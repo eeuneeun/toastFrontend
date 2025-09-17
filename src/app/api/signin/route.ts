@@ -41,10 +41,11 @@ export async function POST(req: Request) {
       user: data.user,
       accessToken: token,
     });
+
     response.cookies.set("authToken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      // secure: false,
+      // secure: process.env.NODE_ENV === "production",
+      secure: true,
       path: "/",
       maxAge: 60 * 60,
     });
