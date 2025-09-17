@@ -34,7 +34,11 @@ export async function POST(req: Request) {
       .setExpirationTime("1h")
       .sign(secret);
 
-    const response = NextResponse.json({ success: true, user: data.user });
+    const response = NextResponse.json({
+      success: true,
+      user: data.user,
+      accessToken: token,
+    });
     response.cookies.set("authToken", token, {
       httpOnly: true,
       // secure: process.env.NODE_ENV === "production",

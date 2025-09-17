@@ -33,14 +33,14 @@ export default function View() {
   const searchParams = useSearchParams();
   const paramId = searchParams.get("id");
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [token, setToken] = useState(null);
 
   const { id, accessToken } = useUserStore();
   const { nowMenu, setNowMenu } = useMenuStore();
   const { cart, loading, error, fetchCart } = useCartStore();
   const { storeId } = useOrderStore();
 
-  console.log(storeId);
   //@ts-ignore
   const nowMenuId = parseInt(paramId, 10);
 
@@ -70,7 +70,7 @@ export default function View() {
     menuId: number,
     quantity: number
   ) {
-    if (accessToken == null || id == "") {
+    if (accessToken == null) {
       alert("주문을 위해 로그인을 해주세요");
       router.push("../../signIn");
       return false;

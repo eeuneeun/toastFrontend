@@ -46,6 +46,7 @@ export const useUserStore = create<UserStore>()(
           set({
             userId: data.user.userId,
             name: data.user.username,
+            accessToken: data.accessToken,
           });
 
           return true;
