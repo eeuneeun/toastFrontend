@@ -10,6 +10,7 @@ export const config = {
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("authToken")?.value;
+  console.log(token);
 
   if (!token) {
     return NextResponse.redirect(new URL("/signIn", request.url));

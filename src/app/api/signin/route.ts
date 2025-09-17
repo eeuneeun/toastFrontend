@@ -19,28 +19,31 @@ export async function POST(req: Request) {
       userId: userId,
       password: password,
     }),
+    credentials: "include",
   });
   const data: resultData = await res.json();
 
   // 👉 여기는 DB나 외부 API 인증 로직 자리
   if (data.message == "Login successful") {
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const secret = new TextEncoder().encode(
+      process.env.JWT_SECRET || "dev-secret"
+    );
 
     const token = await new SignJWT({ userId })
       .setProtectedHeader({ alg: "HS256" })
       .setExpirationTime("1h")
       .sign(secret);
 
-    const res = NextResponse.json({ success: true, userId });
-    res.cookies.set("authToken", token, {
+    const response = NextResponse.json({ success: true, user: data.user });
+    response.cookies.set("authToken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      // secure: process.env.NODE_ENV === "production",
+      secure: false,
       path: "/",
       maxAge: 60 * 60,
     });
 
-    return NextResponse.json(data);
-    return data;
+    return response;
   } else {
     return NextResponse.json({ success: false }, { status: 401 });
   }
