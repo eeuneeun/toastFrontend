@@ -41,8 +41,8 @@ export async function POST(req: Request) {
     });
     response.cookies.set("authToken", token, {
       httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
+      // secure: false,
       path: "/",
       maxAge: 60 * 60,
     });

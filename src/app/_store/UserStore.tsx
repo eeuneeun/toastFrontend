@@ -34,6 +34,7 @@ export const useUserStore = create<UserStore>()(
                 userId: userId,
                 password: password,
               }),
+              credentials: "include",
             }
           );
 
@@ -61,6 +62,7 @@ export const useUserStore = create<UserStore>()(
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "include",
           }
         );
         const data = await res.json();
