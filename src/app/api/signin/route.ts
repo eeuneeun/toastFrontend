@@ -23,6 +23,8 @@ export async function POST(req: Request) {
   });
   const data: resultData = await res.json();
 
+  console.log("JWT_SECRET:", process.env.JWT_SECRET);
+
   // 👉 여기는 DB나 외부 API 인증 로직 자리
   if (data.message == "Login successful") {
     const secret = new TextEncoder().encode(
