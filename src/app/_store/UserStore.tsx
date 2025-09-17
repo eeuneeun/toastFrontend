@@ -25,38 +25,21 @@ export const useUserStore = create<UserStore>()(
       // 로그인 처리
       signIn: async (userId, password) => {
         try {
-          const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/user/login`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                userId: userId,
-                password: password,
-              }),
-            }
-          );
+          const res = await fetch(`/api/signin`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId: userId,
+              password: password,
+            }),
+          });
+
+          if (!res.ok) return false;
           const data = await res.json();
 
           set({
-            id: data.user.id,
             userId: data.user.userId,
             name: data.user.username,
-            accessToken: "QWEQ1KJWEJLQKWEw",
-          });
-          const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-
-          const token = await new SignJWT({ name })
-            .setProtectedHeader({ alg: "HS256" })
-            .setExpirationTime("1h")
-            .sign(secret);
-
-          const respose = NextResponse.json({ success: true });
-          respose.cookies.set("authToken", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            path: "/",
-            maxAge: 60 * 60,
           });
 
           return true;
@@ -66,20 +49,12 @@ export const useUserStore = create<UserStore>()(
         }
       },
       signOut: async (userId, accToken) => {
-        //try {
-        // const res = await fetch(
-        //   `${process.env.NEXT_PUBLIC_API_URL}/user/logout`,
-        //   {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({
-        //       userId: userId,
-        //       password: password,
-        //     }),
-        //   }
-        // );
-        // const data = await res.json();
-        // console.log("data", data);
+        const res = await fetch(`/api/signout`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        console.log("data", data);
         set({
           id: "",
           name: "",
