@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { SignJWT } from "jose";
 import { redirect } from "next/navigation";
 
@@ -22,7 +22,6 @@ export async function POST(req: Request) {
   });
   const data: resultData = await res.json();
 
-  console.log(data);
   // 👉 여기는 DB나 외부 API 인증 로직 자리
   if (data.message == "Login successful") {
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -39,7 +38,9 @@ export async function POST(req: Request) {
       path: "/",
       maxAge: 60 * 60,
     });
-    return res;
+
+    return NextResponse.json(data);
+    return data;
   } else {
     return NextResponse.json({ success: false }, { status: 401 });
   }

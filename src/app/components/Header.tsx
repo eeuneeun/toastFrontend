@@ -20,7 +20,7 @@ export default function Header() {
           <img src="/logo.png" alt="토스트롱" />
         </Link>
 
-        {id ? (
+        {name ? (
           <div>
             <Link href="/mypage" className="mypage-btn">
               <AccountBoxIcon />

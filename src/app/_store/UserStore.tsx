@@ -37,9 +37,12 @@ export const useUserStore = create<UserStore>()(
             }
           );
 
-          if (!res.ok) return false;
+          if (!res.ok) {
+            set({ error: "로그인 실패" });
+            return false;
+          }
           const data = await res.json();
-          console.log(data);
+
           set({
             userId: data.user.userId,
             name: data.user.username,
