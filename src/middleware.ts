@@ -5,12 +5,11 @@ import { jwtVerify } from "jose";
 
 // 보호할 경로 지정
 export const config = {
-  matcher: ["/cart", "/mypage", "/receipt"],
+  matcher: ["/cart/:path*", "/mypage/:path*", "/receipt/:path*"],
 };
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("authToken")?.value;
-  console.log(token);
 
   if (!token) {
     return NextResponse.redirect(new URL("/signIn", request.url));
@@ -18,7 +17,9 @@ export async function middleware(request: NextRequest) {
 
   try {
     // jose는 Uint8Array 키를 사용해야 함
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const secret = new TextEncoder().encode(
+      process.env.JWT_SECRET || "dev-secret"
+    );
 
     // JWT 검증
     await jwtVerify(token, secret);
