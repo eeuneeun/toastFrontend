@@ -25,14 +25,17 @@ export const useUserStore = create<UserStore>()(
       // 로그인 처리
       signIn: async (userId, password) => {
         try {
-          const res = await fetch(`/api/signin`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              userId: userId,
-              password: password,
-            }),
-          });
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SELF_API_URL}/api/signin`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                userId: userId,
+                password: password,
+              }),
+            }
+          );
 
           if (!res.ok) return false;
           const data = await res.json();
@@ -49,10 +52,13 @@ export const useUserStore = create<UserStore>()(
         }
       },
       signOut: async () => {
-        const res = await fetch(`/api/signout`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_SELF_API_URL}/api/signout`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         const data = await res.json();
         console.log("data", data);
         set({
