@@ -3,11 +3,6 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-// 보호할 경로 지정
-export const config = {
-  matcher: ["/cart/:path*", "/mypage/:path*", "/receipt/:path*"],
-};
-
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("authToken")?.value;
 
@@ -32,3 +27,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/signIn", request.url));
   }
 }
+
+// 보호할 경로 지정
+export const config = {
+  matcher: [],
+};

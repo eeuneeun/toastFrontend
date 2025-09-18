@@ -45,7 +45,7 @@ export const useUserStore = create<UserStore>()(
           const data = await res.json();
 
           set({
-            userId: data.user.userId,
+            id: data.user.id,
             name: data.user.username,
             accessToken: data.accessToken,
           });
@@ -66,7 +66,7 @@ export const useUserStore = create<UserStore>()(
           }
         );
         const data = await res.json();
-        console.log("data", data);
+
         set({
           id: "",
           name: "",

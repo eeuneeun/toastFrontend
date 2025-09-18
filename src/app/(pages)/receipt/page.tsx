@@ -16,6 +16,8 @@ export default function Receipt() {
   async function getMenuById(menuId: number) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
       method: "GET",
+      credentials: "include", // ✅ 쿠키 포함
+
       // headers: {
       //   customerId: id,
       // },
@@ -26,12 +28,17 @@ export default function Receipt() {
 
   // 해당 유저 아이디의 주문내역 전체 호출
   async function getReceiptAll() {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
-      method: "GET",
-      // headers: {
-      //   customerId: id,
-      // },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/order/id/${id}`,
+      {
+        method: "GET",
+        credentials: "include", // ✅ 쿠키 포함
+
+        // headers: {
+        //   customerId: id,
+        // },
+      }
+    );
     const data = await response.json();
     console.log(data);
     setList(data);

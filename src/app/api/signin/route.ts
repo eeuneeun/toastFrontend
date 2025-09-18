@@ -23,7 +23,7 @@ export async function POST(req: Request) {
   });
   const data: resultData = await res.json();
 
-  console.log("JWT_SECRET:", process.env.JWT_SECRET);
+  console.log("JWT_SECRET:", data);
 
   // 👉 여기는 DB나 외부 API 인증 로직 자리
   if (data.message == "Login successful") {
@@ -44,10 +44,11 @@ export async function POST(req: Request) {
 
     response.cookies.set("authToken", token, {
       httpOnly: true,
-      secure:
-        process.env.NODE_ENV === "production" &&
-        process.env.PROTOCOL === "https",
+      secure: false,
+      // process.env.NODE_ENV === "production" &&
+      // process.env.PROTOCOL === "https",
       sameSite: "none", // 크로스 도메인 쿠키 허용
+      path: "/",
       maxAge: 1000 * 60 * 60, // 1시간
     });
 
