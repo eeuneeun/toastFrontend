@@ -8,8 +8,12 @@ export default function MyPage() {
   const router = useRouter();
   const { id, name, accessToken, signOut } = useUserStore();
 
+  if (accessToken == null) {
+    router.push("/signIn");
+  }
+
   async function logout() {
-    const result = await signOut();
+    const result = await signOut(id, accessToken);
     if (result) {
       router.push("/");
     }

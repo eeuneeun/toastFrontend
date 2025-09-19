@@ -11,7 +11,11 @@ export default function Receipt() {
   const router = useRouter();
   const [list, setList] = useState([]);
   const [firstMenuNameArr, setFirstMenuNameArr] = useState([]);
-  const { id } = useUserStore();
+  const { id, accessToken } = useUserStore();
+
+  if (accessToken == null) {
+    router.push("/signIn");
+  }
 
   async function getMenuById(menuId: number) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {

@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       secure: false,
       // process.env.NODE_ENV === "production" &&
       // process.env.PROTOCOL === "https",
-      sameSite: "none", // 크로스 도메인 쿠키 허용
+      sameSite: "lax", // 크로스 도메인 쿠키 허용
       path: "/",
       maxAge: 1000 * 60 * 60, // 1시간
     });

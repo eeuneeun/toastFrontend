@@ -11,7 +11,11 @@ type User = {
 };
 export default function SignIn() {
   const router = useRouter();
-  const { signIn } = useUserStore();
+  const { accessToken, signIn } = useUserStore();
+
+  if (accessToken !== null) {
+    router.push("/");
+  }
 
   async function login(data: User) {
     const res = await signIn(data.userId, data.password);
